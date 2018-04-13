@@ -31,7 +31,7 @@ export default class SectionListBasics extends Component {
         <TextInput
           multiline
           style={styles.descriptionInput}
-          placeholder="Enter a description for your alert here..."
+          placeholder="Enter a description for your report here..."
           onChangeText={(description) => this.setState({description})}
         />
         <TouchableOpacity 
