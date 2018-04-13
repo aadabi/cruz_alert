@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 // import firebase from 'react-native-firebase';
 // import { GoogleSignin } from 'react-native-google-signin';
 
@@ -19,6 +19,11 @@ export default class SectionListBasics extends Component {
     super(props);
     this.state = {description: ''};
   }
+
+  submitReport() {
+    // submit this.state.description to firebase backend
+    // possible feature: check if report is empty or very short and 
+  }
   
   render() {
     return (
@@ -29,6 +34,12 @@ export default class SectionListBasics extends Component {
           placeholder="Enter a description for your alert here..."
           onChangeText={(description) => this.setState({description})}
         />
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={this.submitReport}
+        >
+          <Text style={styles.buttonText}>Submit Report</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -46,6 +57,16 @@ const styles = StyleSheet.create({
     borderColor: 'lightgray',
     height: '40%',
     padding: 10,
-    paddingTop: 10
+    paddingTop: 10,
+    marginBottom: 10
+  },
+  button: {
+    borderRadius: 10,
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#4B966A'
+  },
+  buttonText: {
+    color: 'white'
   }
 });
