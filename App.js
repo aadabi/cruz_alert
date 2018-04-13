@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { Alert, AsyncStorage, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { firebaseApp, firebaseRef } from './firebase/config'; // ref is database, app is root connection
 
 
 export default class SectionListBasics extends Component {
   constructor(props) {
     super(props);
-    this.state = {description: ''};
+    this.state = {description: '', newtext: ''};
   }
-
 
   getRef() {
     return firebaseApp.database().ref();
@@ -18,6 +17,18 @@ export default class SectionListBasics extends Component {
   submitReport() {
     // submit this.state.description to firebase backend
     // possible feature: check if report is empty or very short and
+    let temp = this.state.description;
+    AsyncStorage.getItem('description', (res) => {
+      var temp;
+      if (res == null) {
+        temp = '';
+      } else {
+        temp = JSON.parse(res);
+      }
+      AsyncStorage.setItem('description',JSON.stringify(temp), (res) => {});
+    })
+    firebaseApp.database().ref('/textReport').set({ description: temp});
+
   }
   render() {
     return (
@@ -26,11 +37,11 @@ export default class SectionListBasics extends Component {
           multiline
           style={styles.descriptionInput}
           placeholder="Enter a description for your report here..."
-          onChangeText={(description) => this.setState({description})}
+          onChangeText={(text) => this.setState({description: text})}
         />
         <TouchableOpacity
           style={styles.button}
-          onPress={this.submitReport}
+          onPress={this.submitReport.bind(this)}
         >
           <Text style={styles.buttonText}>Submit Report</Text>
         </TouchableOpacity>
