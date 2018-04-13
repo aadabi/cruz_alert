@@ -1,17 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-// import firebase from 'react-native-firebase';
-// import { GoogleSignin } from 'react-native-google-signin';
-
-
-// import {
-//    FIREBASE_API_KEY,
-//    AUTH_DOMAIN,
-//    DATABASE_URL,
-//    FIREBASE_PROJECT_ID,
-//    FIREBASE_STORAGE_BUCKET,
-//    MESSAGE_ID
-// } from 'react-native-dotenv';
+import { firebaseApp, firebaseRef } from './firebase/config'; // ref is database, app is root connection
 
 
 export default class SectionListBasics extends Component {
@@ -20,11 +9,16 @@ export default class SectionListBasics extends Component {
     this.state = {description: ''};
   }
 
+
+  getRef() {
+    return firebaseApp.database().ref();
+    //return firebaseRef.child(/*name of parent data*/);
+  }
+
   submitReport() {
     // submit this.state.description to firebase backend
-    // possible feature: check if report is empty or very short and 
+    // possible feature: check if report is empty or very short and
   }
-  
   render() {
     return (
       <View style={styles.container}>
@@ -34,7 +28,7 @@ export default class SectionListBasics extends Component {
           placeholder="Enter a description for your report here..."
           onChangeText={(description) => this.setState({description})}
         />
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.button}
           onPress={this.submitReport}
         >
