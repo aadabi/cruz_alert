@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, AsyncStorage, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { Alert, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { firebaseApp, firebaseRef } from './firebase/config'; // ref is database, app is root connection
 
 
@@ -18,15 +18,7 @@ export default class SectionListBasics extends Component {
     // submit this.state.description to firebase backend
     // possible feature: check if report is empty or very short and
     let temp = this.state.description;
-    AsyncStorage.getItem('description', (res) => {
-      var temp;
-      if (res == null) {
-        temp = '';
-      } else {
-        temp = JSON.parse(res);
-      }
-      AsyncStorage.setItem('description',JSON.stringify(temp), (res) => {});
-    })
+    console.log(temp);
     firebaseApp.database().ref('/textReport').set({ description: temp});
 
   }
