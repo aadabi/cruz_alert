@@ -6,20 +6,19 @@ import { firebaseApp, firebaseRef } from './firebase/config'; // ref is database
 export default class SectionListBasics extends Component {
   constructor(props) {
     super(props);
-    this.state = {description: '', newtext: ''};
-  }
-
-  getRef() {
-    return firebaseApp.database().ref();
-    //return firebaseRef.child(/*name of parent data*/);
+    this.state = {description: ''};
   }
 
   submitReport() {
     // submit this.state.description to firebase backend
     // possible feature: check if report is empty or very short and
-    let temp = this.state.description;
-    console.log(temp);
-    firebaseApp.database().ref('/textReport').set({ description: temp});
+    const description = this.state.description;
+    if (description == null) {
+      console.log("no input from report");
+      return;
+    }
+    console.log(description);
+    firebaseApp.database().ref('/textReport').set({description});
 
   }
   render() {
@@ -29,7 +28,7 @@ export default class SectionListBasics extends Component {
           multiline
           style={styles.descriptionInput}
           placeholder="Enter a description for your report here..."
-          onChangeText={(text) => this.setState({description: text})}
+          onChangeText={(description) => this.setState({description})}
         />
         <TouchableOpacity
           style={styles.button}
