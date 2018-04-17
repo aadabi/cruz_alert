@@ -1,0 +1,87 @@
+{
+  "project_info": {
+    "project_number": "764779446389",
+    "firebase_url": "https://cruzalert.firebaseio.com",
+    "project_id": "cruzalert",
+    "storage_bucket": "cruzalert.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764779446389:android:86e553af42392ac0",
+        "android_client_info": {
+          "package_name": "com.cruzalert"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764779446389-c094vpaggobdapr7fj7enshosh6v4jdm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cruzalert",
+            "certificate_hash": "dcfe44ff6155e1cfad0d1598005034896e41cf4e"
+          }
+        },
+        {
+          "client_id": "764779446389-l2j5c87oil9ohm0rldt0fpaibd65ggqt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cruzalert",
+            "certificate_hash": "28e5c74a9b300ec3d6705cdd72810e1037e574c4"
+          }
+        },
+        {
+          "client_id": "764779446389-3f3qdrlo0b2psfqspeqg3l9jlh3ifc7q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cruzalert",
+            "certificate_hash": "8748cd95d670b3998d34e05dcbe4d62b6c272308"
+          }
+        },
+        {
+          "client_id": "764779446389-o8qr5omnl9sjslc1k86qqsg9lp1fmupf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cruzalert",
+            "certificate_hash": "d7683c37e6783f3021b845394ee46bd4914e2bc8"
+          }
+        },
+        {
+          "client_id": "764779446389-rpjff3bfqrf5o0cf07stf0jh60l9e0ro.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cruzalert",
+            "certificate_hash": "f0d69167f74e5ce56a45bf1721991c96a9bcc7c8"
+          }
+        },
+        {
+          "client_id": "764779446389-73hvh10d930ickmsor2p8jt65df4136q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9Yhb8Y0VpLTk5UOFYIxT6bSn0ZZcXy3o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764779446389-73hvh10d930ickmsor2p8jt65df4136q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
