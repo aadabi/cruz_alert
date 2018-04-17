@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Alert, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import { firebaseApp, firebaseRef } from './firebase/config'; // ref is database, app is root connection
+import firebase from 'react-native-firebase';
+//import { firebaseApp, firebaseRef } from './firebase/config'; // ref is database, app is root connection
+
+import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 
 export default class SectionListBasics extends Component {
@@ -18,7 +21,7 @@ export default class SectionListBasics extends Component {
       return;
     }
     console.log(description);
-    firebaseApp.database().ref('/textReport').set({description});
+    firebase.database().ref('/textReport').set({description});
 
   }
   render() {
