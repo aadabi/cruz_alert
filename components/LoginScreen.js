@@ -9,16 +9,22 @@ export default class LoginScreen extends Component {
       this.googleLogin = this.googleLogin.bind(this);
   }
 
+  async addUserToDatabase(user) {
+      const {uid, displayName, email} = user;
+      firebase.database().ref('/users/' + uid).set({
+          displayName,
+          email
+      });
+  }
+
   async googleLogin() {
       try {
-          this.setState({loading: true});
           await GoogleSignin.configure();
           const data = await GoogleSignin.signIn();
           const credential = firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken)
-          const currentUser = await firebase.auth().signInAndRetrieveDataWithCredential(credential);
-          this.setState({loading: false});
+          const {user} = await firebase.auth().signInAndRetrieveDataWithCredential(credential);
+          await this.addUserToDatabase(user);
           this.props.navigation.navigate('DrawerStack');
-          console.info(JSON.stringify(currentUser.user.toJSON()));
       } catch (e) {
           console.error(e);
       }
