@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import { Text } from 'react-native';
-import firebase from 'react-native-firebase';
+import React, { Component } from "react";
+import { Text } from "react-native";
+import firebase from "react-native-firebase";
 
 export default class LoadingScreen extends Component {
   componentDidMount() {
-      this.authSubscription = firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
-              this.props.navigation.navigate('DrawerStack');
-          } else {
-              this.props.navigation.navigate('LoginScreen');
-          }
-      });
+    this.authSubscription = firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.props.navigation.navigate("DrawerStack");
+      } else {
+        this.props.navigation.navigate("LoginScreen");
+      }
+    });
   }
 
   componentWillUnmount() {
-      this.authSubscription();
+    this.authSubscription();
   }
 
   render() {
-      return <Text>Loading</Text>
+    return <Text>Loading</Text>;
   }
 }

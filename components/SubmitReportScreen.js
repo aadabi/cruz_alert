@@ -1,11 +1,18 @@
-import React, { Component } from 'react';
-import { Alert, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import firebase from 'react-native-firebase';
+import React, { Component } from "react";
+import {
+  Alert,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity
+} from "react-native";
+import firebase from "react-native-firebase";
 
 export default class SubmitReportScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {description: ''};
+    this.state = { description: "" };
   }
 
   submitReport() {
@@ -18,7 +25,10 @@ export default class SubmitReportScreen extends Component {
       return;
     }
     console.log(description);
-    firebase.database().ref('/textReport').set({description});
+    firebase
+      .database()
+      .ref("/textReport")
+      .set({ description });
   }
 
   render() {
@@ -28,7 +38,7 @@ export default class SubmitReportScreen extends Component {
           multiline
           style={styles.descriptionInput}
           placeholder="Enter a description for your report here..."
-          onChangeText={(description) => this.setState({description})}
+          onChangeText={description => this.setState({ description })}
         />
         <TouchableOpacity
           style={styles.button}
@@ -43,26 +53,26 @@ export default class SubmitReportScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-   flex: 1,
-   padding: 20,
-   paddingTop: 50
+    flex: 1,
+    padding: 20,
+    paddingTop: 50
   },
   descriptionInput: {
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: 'lightgray',
-    height: '40%',
+    borderColor: "lightgray",
+    height: "40%",
     padding: 10,
     paddingTop: 10,
     marginBottom: 10
   },
   button: {
     borderRadius: 10,
-    alignItems: 'center',
+    alignItems: "center",
     padding: 20,
-    backgroundColor: '#4B966A'
+    backgroundColor: "#4B966A"
   },
   buttonText: {
-    color: 'white'
+    color: "white"
   }
 });
