@@ -151,6 +151,7 @@ dependencies {
 
     // RNFirebase modules
     implementation 'com.google.android.gms:play-services-auth:12.0.0'
+    implementation "com.google.firebase:firebase-auth:12.0.0"
     implementation 'com.google.firebase:firebase-database:12.0.0'
 
     implementation fileTree(dir: "libs", include: ["*.jar"])

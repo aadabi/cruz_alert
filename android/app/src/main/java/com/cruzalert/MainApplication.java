@@ -6,6 +6,8 @@ import com.facebook.react.ReactApplication;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.database.RNFirebaseDatabasePackage;
+import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -25,11 +27,12 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new RNGoogleSigninPackage(),
-            new RNFirebaseDatabasePackage(),
-            new RNFirebasePackage()
+        return Arrays.<ReactPackage>asList(
+                new MainReactPackage(),
+                new RNGoogleSigninPackage(),
+              new RNFirebaseDatabasePackage(),
+              new RNFirebasePackage(),
+              new RNFirebaseAuthPackage()
       );
     }
 
