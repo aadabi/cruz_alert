@@ -24,11 +24,14 @@ export default class SubmitReportScreen extends Component {
       console.log("no input from report");
       return;
     }
-    console.log(description);
+    const timestamp = new Date();
+    const userName = firebase.auth().currentUser.displayName;
+    const userEmail = firebase.auth().currentUser.email;
+    const uid = firebase.auth().currentUser.uid;
     firebase
       .database()
-      .ref("/textReport")
-      .set({ description });
+      .ref("/textReport/")
+      .push({ uid, userName, userEmail, description, timestamp });
   }
 
   render() {
