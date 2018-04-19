@@ -15,10 +15,12 @@ export default class SubmitReportScreen extends Component {
     this.state = { description: "" };
   }
 
+  static navigationOptions = {
+    drawerLabel: "Submit a Report"
+  };
+
   submitReport() {
-    // submit this.state.description to firebase backend
-    // possible feature: check if report is empty or very short and
-    // TODO: keep track of user id
+    // TODO: add the report to the list of reports for the user
     const description = this.state.description;
     if (description == null) {
       console.log("no input from report");
@@ -67,7 +69,8 @@ const styles = StyleSheet.create({
     height: "40%",
     padding: 10,
     paddingTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    textAlignVertical: "top"
   },
   button: {
     borderRadius: 10,
