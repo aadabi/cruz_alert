@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Button } from 'react-native';
+import { View, Image, Button, StyleSheet } from 'react-native';
 import { GoogleSignin } from 'react-native-google-signin';
 import firebase from 'react-native-firebase';
 
@@ -26,13 +26,39 @@ export default class LoginScreen extends Component {
 
   render() {
       return (
-          <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-              <Button 
+        <View style ={loginStyle.container}>
+          <Image resizeMode="contain" style={loginStyle.logo} source= {require('../components/images/rslogo.png')} />
+          <View style={loginStyle.loginContainer}>
+
+
+              <Button
                   onPress={this.googleLogin}
                   title="Log in with Google"
-                  color="#841584"
-              />
+                  color='#ffae42'/>
+
           </View>
+       </View>
       );
   }
 }
+  const loginStyle = StyleSheet.create({
+    container: {
+        alignItems:'center',
+        justifyContent:'center',
+        flex: 1,
+        backgroundColor:'#062938'
+
+    },
+    loginContainer:{
+        flex: 1,
+        justifyContent:'flex-end',
+        padding:10
+
+    },
+    logo:{
+        position: 'absolute',
+        width:400,
+        height:150
+    }
+
+});
