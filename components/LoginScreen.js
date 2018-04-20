@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Button } from "react-native";
+import { View, Button, Alert } from "react-native";
 import { GoogleSignin } from "react-native-google-signin";
 import firebase from "react-native-firebase";
 
@@ -31,8 +31,14 @@ export default class LoginScreen extends Component {
       const {
         user
       } = await firebase.auth().signInAndRetrieveDataWithCredential(credential);
-      await this.addUserToDatabase(user);
-      this.props.navigation.navigate("DrawerStack");
+      if (user.email.substr(user.email.length - 8) != "ucsc.edu"){
+        Alert.alert("Please use your UCSC email to log in.");
+        await GoogleSignin.signOut();
+      } else {
+        await this.addUserToDatabase(user);
+        this.props.navigation.navigate("DrawerStack");
+      }
+
     } catch (e) {
       console.error(e);
     }
