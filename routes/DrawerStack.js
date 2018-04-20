@@ -1,8 +1,9 @@
 import React from "react";
 import firebase from "react-native-firebase";
-import { Text, View, SafeAreaView, Button } from "react-native";
-import { DrawerNavigator, DrawerItems } from "react-navigation";
+import { Text } from "react-native";
+import { DrawerNavigator } from "react-navigation";
 import SubmitReportScreen from "../components/SubmitReportScreen";
+import DrawerContent from "../components/DrawerContent";
 
 const DrawerStack = DrawerNavigator(
   {
@@ -15,25 +16,7 @@ const DrawerStack = DrawerNavigator(
         <Text onPress={() => navigation.navigate("DrawerOpen")}>Menu</Text>
       )
     }),
-    contentComponent: props => (
-      // TODO: possibly move this to its own component
-      <View style={{ flex: 1 }}>
-        <SafeAreaView forceInset={{ top: "always", horizontal: "never" }}>
-          <DrawerItems {...props} />
-          <Button
-            title="Logout"
-            onPress={async () => {
-              try {
-                await firebase.auth().signOut();
-                props.navigation.navigate("LoginScreen");
-              } catch (e) {
-                console.error(e);
-              }
-            }}
-          />
-        </SafeAreaView>
-      </View>
-    )
+    contentComponent: DrawerContent
   }
 );
 
