@@ -31,14 +31,13 @@ export default class LoginScreen extends Component {
       const {
         user
       } = await firebase.auth().signInAndRetrieveDataWithCredential(credential);
-      if (user.email.substr(user.email.length - 8) != "ucsc.edu"){
+      if (user.email.substr(user.email.length - 8) != "ucsc.edu") {
         Alert.alert("Please use your UCSC email to log in.");
         await GoogleSignin.signOut();
       } else {
         await this.addUserToDatabase(user);
-        this.props.navigation.navigate("DrawerStack");
+        this.props.navigation.navigate("MainNavigation");
       }
-
     } catch (e) {
       console.error(e);
     }

@@ -7,9 +7,10 @@ import {
   TextInput,
   TouchableOpacity
 } from "react-native";
+import { StackNavigator } from "react-navigation";
 import firebase from "react-native-firebase";
 
-export default class SubmitReportScreen extends Component {
+class SubmitReportScreen extends Component {
   constructor(props) {
     super(props);
     this.state = { description: "" };
@@ -82,3 +83,9 @@ const styles = StyleSheet.create({
     color: "white"
   }
 });
+
+const SubmitReportScreenStackNavigator = StackNavigator({
+  SubmitReportScreen: { screen: SubmitReportScreen }
+});
+
+export default SubmitReportScreenStackNavigator;

@@ -1,17 +1,21 @@
-import { StackNavigator } from "react-navigation";
-import DrawerStack from "./DrawerStack";
+import React from "react";
+import firebase from "react-native-firebase";
+import { Text } from "react-native";
+import { DrawerNavigator } from "react-navigation";
+import SubmitReportScreen from "../components/SubmitReportScreen";
+import DrawerContent from "../components/DrawerContent";
 
-const MainNavigation = StackNavigator(
+const MainNavigation = DrawerNavigator(
   {
-    DrawerStack: { screen: DrawerStack }
+    SubmitReportScreen: { screen: SubmitReportScreen }
   },
   {
-    headerMode: "float",
-    navigationOptions: ({ navigation }) => ({
-      headerStyle: { backgroundColor: "#4C3E54" },
-      title: "Welcome!",
-      headerTintColor: "white"
-    })
+    // navigationOptions: ({ navigation }) => ({
+    //   headerLeft: (
+    //     <Text onPress={() => navigation.navigate("DrawerOpen")}>Menu</Text>
+    //   )
+    // }),
+    contentComponent: DrawerContent
   }
 );
 
