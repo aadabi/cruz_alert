@@ -5,7 +5,8 @@ import {
   Text,
   View,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Keyboard
 } from "react-native";
 import { StackNavigator } from "react-navigation";
 import firebase from "react-native-firebase";
@@ -14,6 +15,8 @@ class SubmitReportScreen extends Component {
   constructor(props) {
     super(props);
     this.state = { description: "" };
+    this.submitReport = this.submitReport.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   static navigationOptions = {
@@ -37,6 +40,12 @@ class SubmitReportScreen extends Component {
       .push({ uid, userName, userEmail, description, timestamp });
   }
 
+  handleSubmit() {
+    this.submitReport();
+    Keyboard.dismiss();
+    this.props.navigation.navigate("Main");
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -46,10 +55,7 @@ class SubmitReportScreen extends Component {
           placeholder="Enter a description for your report here..."
           onChangeText={description => this.setState({ description })}
         />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={this.submitReport.bind(this)}
-        >
+        <TouchableOpacity style={styles.button} onPress={this.handleSubmit}>
           <Text style={styles.buttonText}>Submit Report</Text>
         </TouchableOpacity>
       </View>
@@ -88,4 +94,4 @@ const SubmitReportScreenStackNavigator = StackNavigator({
   SubmitReportScreen: { screen: SubmitReportScreen }
 });
 
-export default SubmitReportScreenStackNavigator;
+export default SubmitReportScreen;

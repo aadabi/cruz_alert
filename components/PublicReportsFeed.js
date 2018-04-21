@@ -25,7 +25,10 @@ const PublicReportsFeedStackNavigator = StackNavigator({
         </Text>
       ),
       headerRight: (
-        <Text onPress={() => alert("pressed")} style={{ paddingRight: 20 }}>
+        <Text
+          onPress={() => navigation.navigate("SubmitReportModal")}
+          style={{ paddingRight: 20 }}
+        >
           New Report
         </Text>
       )
