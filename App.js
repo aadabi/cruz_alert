@@ -7,7 +7,7 @@ import LoadingScreen from "./components/LoadingScreen";
 const RootStack = SwitchNavigator(
   {
     LoginScreen: { screen: LoginScreen },
-    DrawerStack: { screen: MainNavigation },
+    MainNavigation: { screen: MainNavigation },
     LoadingScreen: { screen: LoadingScreen }
   },
   {
