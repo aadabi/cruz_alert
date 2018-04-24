@@ -6,7 +6,7 @@ export default class LoadingScreen extends Component {
   componentDidMount() {
     this.authSubscription = firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.props.navigation.navigate("DrawerStack");
+        this.props.navigation.navigate("MainNavigation");
       } else {
         this.props.navigation.navigate("LoginScreen");
       }

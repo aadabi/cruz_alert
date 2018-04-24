@@ -20,8 +20,12 @@
     "preset": "react-native"
   },
   "dependencies": {
+<<<<<<< HEAD
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+=======
+    "fb-watchman": "^2.0.0",
+>>>>>>> a9fd0d960bf0725563d92e8395bc00d1ce6f4fa8
     "firebase": "^4.12.1",
     "react": "16.3.0-alpha.1",
     "react-google-button": "^0.5.3",
