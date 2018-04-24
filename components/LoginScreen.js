@@ -1,7 +1,12 @@
 import React, { Component } from "react";
-import { View, Button } from "react-native";
+import { View, Button, StyleSheet, TouchableOpacity, Image, Text} from "react-native";
 import { GoogleSignin } from "react-native-google-signin";
 import firebase from "react-native-firebase";
+import {GoogleLogin} from 'react-google-login';
+
+import {LoginStyle} from '../components/LoginLayout';
+
+import {ButtonStyle} from '../components/ButtonLayout';
 
 export default class LoginScreen extends Component {
   constructor(props) {
@@ -40,12 +45,32 @@ export default class LoginScreen extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Button
-          onPress={this.googleLogin}
-          title="Log in with Google"
-          color="#841584"
-        />
+
+      <View style = {LoginStyle.ScreenCont}>
+        <Image resizeMode="contain" style={LoginStyle.logo} source= {require('../components/images/RSCRuzlogo.png')} />
+        <View style={ButtonStyle.ButtonContainer}>
+          <View style ={LoginStyle.loginContainer} >
+            <TouchableOpacity style={ButtonStyle.GoogleDesign} activeOpacity={0.5} onPress={this.googleLogin}>
+
+                <Image
+                  source={require('../components/images/google-logo.png')}
+                  style={ButtonStyle.IconLayout}
+
+                />
+
+                <View style={ButtonStyle.ButtonDivider} />
+
+                <Text style={ButtonStyle.TextLayout}> Login with Google
+
+                </Text>
+
+            </TouchableOpacity>
+
+
+
+          </View>
+        </View>
+
       </View>
     );
   }

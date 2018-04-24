@@ -4,6 +4,7 @@ import { Text, View, SafeAreaView, Button } from "react-native";
 import { DrawerNavigator, DrawerItems } from "react-navigation";
 import SubmitReportScreen from "../components/SubmitReportScreen";
 
+
 const DrawerStack = DrawerNavigator(
   {
     SubmitReportScreen: { screen: SubmitReportScreen }
