@@ -52,7 +52,8 @@ class PublicReportsFeed extends Component {
       <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderRow.bind(this)}
-        enableEmptySection={true} />
+        enableEmptySection={true}
+        style={{flex:1}} />
     </View>
     );
   }
