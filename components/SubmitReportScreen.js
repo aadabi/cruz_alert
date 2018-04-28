@@ -24,20 +24,25 @@ class SubmitReportScreen extends Component {
   };
 
   submitReport() {
-    // TODO: add the report to the list of reports for the user
     const description = this.state.description;
     if (description == null) {
       console.log("no input from report");
       return;
     }
+    // TODO: get the time from the server
     const timestamp = new Date();
-    const userName = firebase.auth().currentUser.displayName;
-    const userEmail = firebase.auth().currentUser.email;
+    const displayName = firebase.auth().currentUser.displayName;
+    const email = firebase.auth().currentUser.email;
     const uid = firebase.auth().currentUser.uid;
+    const subfield = this.state.public ? "public" : "private";
+    const reportRef = firebase
+      .database()
+      .ref(`/reports/${subfield}/`)
+      .push({ uid, displayName, email, description, timestamp });
     firebase
       .database()
-      .ref("/textReport/")
-      .push({ uid, userName, userEmail, description, timestamp });
+      .ref(`/users/${uid}/posts/${subfield}/${reportRef.key}`)
+      .set(true);
   }
 
   handleSubmit() {
