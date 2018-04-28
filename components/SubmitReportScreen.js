@@ -6,7 +6,9 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Keyboard
+  Keyboard,
+  Switch,
+  KeyboardAvoidingView
 } from "react-native";
 import { StackNavigator } from "react-navigation";
 import firebase from "react-native-firebase";
@@ -14,7 +16,7 @@ import firebase from "react-native-firebase";
 class SubmitReportScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { description: "" };
+    this.state = { description: "", public: false };
     this.submitReport = this.submitReport.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -53,17 +55,22 @@ class SubmitReportScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}>
         <TextInput
           multiline
           style={styles.descriptionInput}
           placeholder="Enter a description for your report here..."
           onChangeText={description => this.setState({ description })}
         />
+        <Text>Make report public</Text>
+        <Switch
+          value={this.state.public}
+          onValueChange={value => this.setState({ public: value })}
+        />
         <TouchableOpacity style={styles.button} onPress={this.handleSubmit}>
           <Text style={styles.buttonText}>Submit Report</Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
