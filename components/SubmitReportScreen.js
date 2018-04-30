@@ -6,7 +6,9 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Keyboard
+  Keyboard,
+  Switch,
+  KeyboardAvoidingView
 } from "react-native";
 import { StackNavigator } from "react-navigation";
 import firebase from "react-native-firebase";
@@ -14,7 +16,7 @@ import firebase from "react-native-firebase";
 class SubmitReportScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { description: "" };
+    this.state = { description: "", public: false };
     this.submitReport = this.submitReport.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -24,20 +26,25 @@ class SubmitReportScreen extends Component {
   };
 
   submitReport() {
-    // TODO: add the report to the list of reports for the user
     const description = this.state.description;
     if (description == null) {
       console.log("no input from report");
       return;
     }
+    // TODO: get the time from the server
     const timestamp = new Date();
-    const userName = firebase.auth().currentUser.displayName;
-    const userEmail = firebase.auth().currentUser.email;
+    const displayName = firebase.auth().currentUser.displayName;
+    const email = firebase.auth().currentUser.email;
     const uid = firebase.auth().currentUser.uid;
+    const subfield = this.state.public ? "public" : "private";
+    const reportRef = firebase
+      .database()
+      .ref(`/reports/${subfield}/`)
+      .push({ uid, displayName, email, description, timestamp });
     firebase
       .database()
-      .ref("/textReport/")
-      .push({ uid, userName, userEmail, description, timestamp });
+      .ref(`/users/${uid}/posts/${subfield}/${reportRef.key}`)
+      .set(true);
   }
 
   handleSubmit() {
@@ -48,17 +55,22 @@ class SubmitReportScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}>
         <TextInput
           multiline
           style={styles.descriptionInput}
           placeholder="Enter a description for your report here..."
           onChangeText={description => this.setState({ description })}
         />
+        <Text>Make report public</Text>
+        <Switch
+          value={this.state.public}
+          onValueChange={value => this.setState({ public: value })}
+        />
         <TouchableOpacity style={styles.button} onPress={this.handleSubmit}>
           <Text style={styles.buttonText}>Submit Report</Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
