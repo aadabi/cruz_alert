@@ -16,7 +16,7 @@ import firebase from "react-native-firebase";
 class SubmitReportScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { description: "", public: false };
+    this.state = { longitude: "", latutude: "" , description: "", public: false };
     this.submitReport = this.submitReport.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -24,6 +24,19 @@ class SubmitReportScreen extends Component {
   static navigationOptions = {
     drawerLabel: "Submit a Report"
   };
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+       (position) => {
+          this.setState({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          });
+       },
+       (error) => Alert.alert(error.message),
+       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+  }
 
   submitReport() {
     const description = this.state.description;
@@ -33,6 +46,8 @@ class SubmitReportScreen extends Component {
     }
     // TODO: get the time from the server
     const timestamp = new Date();
+    const longitude = this.state.longitude;
+    const latitude = this.state.latitude;
     const displayName = firebase.auth().currentUser.displayName;
     const email = firebase.auth().currentUser.email;
     const uid = firebase.auth().currentUser.uid;
@@ -40,7 +55,7 @@ class SubmitReportScreen extends Component {
     const reportRef = firebase
       .database()
       .ref(`/reports/${subfield}/`)
-      .push({ uid, displayName, email, description, timestamp });
+      .push({ uid, displayName, email, description, timestamp, longitude, latitude });
     firebase
       .database()
       .ref(`/users/${uid}/posts/${subfield}/${reportRef.key}`)
