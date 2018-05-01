@@ -15,14 +15,15 @@ class PublicReportsFeed extends Component {
 
   listenForItems(itemsRef) {
     itemsRef.limitToLast(15).on('value', (snap) => {
-      var items = [];
+      const items = [];
       snap.forEach((child) => {
         items.push({
           description: child.val().description
         });
       });
+      const result = items.reverse()
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(items)
+        dataSource: this.state.dataSource.cloneWithRows(result)
       });
     });
   }
