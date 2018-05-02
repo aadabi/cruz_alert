@@ -10,29 +10,39 @@ class UserReports extends Component {
 
   constructor(props) {
     super(props);
-    this.itemsRef = firebase.database().ref('/reports/private');
+    this.privateRef = firebase.database().ref('/reports/private');
+    this.publicRef = firebase.database().ref('/reports/public');
     this.state = ({
       dataSource: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2})
     });
     this.items = [];
   }
 
-  listenForItems(itemsRef) {
-    itemsRef.orderByChild('uid').equalTo(firebase.auth().currentUser.uid).on('value', (snap) => {
-      var items = [];
+  listenForItems(privateRef, publicRef) {
+    const items = [];
+    privateRef.orderByChild('uid').equalTo(firebase.auth().currentUser.uid).on('value', (snap) => {
       snap.forEach((child) => {
         items.push({
           description: child.val().description
         });
       });
+    });
+
+    publicRef.orderByChild('uid').equalTo(firebase.auth().currentUser.uid).on('value', (snap) => {
+      snap.forEach((child) => {
+        items.push({
+          description: child.val().description
+        });
+      });
+      const result = items.reverse()
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(items)
+        dataSource: this.state.dataSource.cloneWithRows(result)
       });
     });
   }
 
   componentDidMount() {
-    this.listenForItems(this.itemsRef);
+    this.listenForItems(this.privateRef, this.publicRef);
   }
 
   renderRow(rowData) {
