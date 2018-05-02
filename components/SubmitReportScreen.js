@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   Keyboard,
   Switch,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Picker
 } from "react-native";
 import { StackNavigator } from "react-navigation";
 import firebase from "react-native-firebase";
@@ -16,7 +17,7 @@ import firebase from "react-native-firebase";
 class SubmitReportScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { longitude: "", latutude: "" , description: "", public: false };
+    this.state = { category: "", longitude: "", latutude: "" , description: "", public: false };
     this.submitReport = this.submitReport.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -46,6 +47,7 @@ class SubmitReportScreen extends Component {
     }
     // TODO: get the time from the server
     const timestamp = new Date();
+    const category = this.state.category;
     const longitude = this.state.longitude;
     const latitude = this.state.latitude;
     const displayName = firebase.auth().currentUser.displayName;
@@ -55,7 +57,7 @@ class SubmitReportScreen extends Component {
     const reportRef = firebase
       .database()
       .ref(`/reports/${subfield}/`)
-      .push({ uid, displayName, email, description, timestamp, longitude, latitude });
+      .push({ uid, displayName, email, category, description, timestamp, longitude, latitude });
     firebase
       .database()
       .ref(`/users/${uid}/posts/${subfield}/${reportRef.key}`)
@@ -68,9 +70,27 @@ class SubmitReportScreen extends Component {
     this.props.navigation.navigate("Main");
   }
 
+  updateCategory = (cat) => {
+    this.setState({ category: cat })
+  }
+
   render() {
+    // TODO: change the styling and color of the picker.item text and 
+    // pop up box for it
     return (
       <KeyboardAvoidingView style={styles.container}>
+
+        <Picker
+          selectedValue = {this.state.category}
+          onValueChange = {this.updateCategory}
+          style= {styles.picker}>
+          <Picker.Item color="blue" label = "Theft" value = "Theft"/>
+          <Picker.Item color="blue" label = "Assault" value = "Assault"/>
+          <Picker.Item color="blue" label = "Domestic" value ="Domestic"/>
+          <Picker.Item color="blue" label = "Weapon" value = "Weapon"/>
+          <Picker.Item color="blue" label = "Drugs" value = "Drugs"/>
+        </Picker>
+
         <TextInput
           multiline
           style={styles.descriptionInput}
@@ -114,6 +134,10 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white"
+  },
+  picker: {
+    height: 50,
+    width: 100
   }
 });
 
