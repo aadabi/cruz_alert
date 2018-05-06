@@ -17,7 +17,7 @@ import firebase from "react-native-firebase";
 class SubmitReportScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { category: "", longitude: "", latutude: "" , description: "", public: false };
+    this.state = { category: "Theft", longitude: "", latutude: "" , description: "", public: false };
     this.submitReport = this.submitReport.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -75,7 +75,7 @@ class SubmitReportScreen extends Component {
   }
 
   render() {
-    // TODO: change the styling and color of the picker.item text and 
+    // TODO: change the styling and color of the picker.item text and
     // pop up box for it
     return (
       <KeyboardAvoidingView style={styles.container}>
