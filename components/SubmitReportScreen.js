@@ -59,7 +59,7 @@ class SubmitReportScreen extends Component {
         <TextInput
           multiline
           style={styles.descriptionInput}
-          placeholder="Enter a description for your report here..."
+          placeholder="Please describe your incident's detail right here..."
           onChangeText={description => this.setState({ description })}
         />
         <Text>Make report public</Text>
@@ -79,26 +79,30 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    paddingTop: 50
+    paddingTop: 50,
+    backgroundColor: "#007E8C",
   },
   descriptionInput: {
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "lightgray",
-    height: "40%",
-    padding: 10,
-    paddingTop: 10,
-    marginBottom: 10,
+    borderRadius: 15,
+    backgroundColor: "#FFB511",
+    borderColor: '#005581',
+    borderWidth: 2,
+    height: "60%",
+    padding: 5,
+    paddingTop: 5,
+    marginBottom: 20,
     textAlignVertical: "top"
   },
   button: {
-    borderRadius: 10,
+    borderRadius: 15,
     alignItems: "center",
+    borderColor: '#005581',
+    borderWidth: 2,
     padding: 20,
-    backgroundColor: "#4B966A"
+    backgroundColor: "#FFB511"
   },
   buttonText: {
-    color: "white"
+    color: "#005581"
   }
 });
 

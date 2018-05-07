@@ -34,7 +34,7 @@ class PublicReportsFeed extends Component {
   renderRow(rowData) {
     return (
       <TouchableHighlight
-        underlayColor='#dddddd'>
+        underlayColor='#007E8C'>
         <View>
           <View style={styles.row}>
             <Text style={styles.descriptionText}>{rowData.description }</Text>
@@ -85,6 +85,7 @@ const PublicReportsFeedStackNavigator = StackNavigator({
 
 var styles = StyleSheet.create({
   appContainer:{
+    backgroundColor:'#FFB511',
     flex: 1
   },
   row: {
@@ -94,7 +95,7 @@ var styles = StyleSheet.create({
   },
   separator: {
     height: 1,
-    backgroundColor: '#CCCCCC',
+    backgroundColor: '#005581',
   },
   descriptionText: {
     flex: 1,

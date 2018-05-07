@@ -14,15 +14,15 @@ export const ButtonStyle = StyleSheet.create({
   //so that text image are in a row
   flexDirection: 'row',
   alignItems: 'center',
-  backgroundColor: '#5D92B1',
+  backgroundColor: '#FFB511',
   //color of the divider between image and text
   //also the border of the button
-  borderColor: '#fff',
-  borderWidth: .5,
-  height: 40,
+  borderColor: '#005581',
+  borderWidth: 2,
+  height: 50,
   //this makes button corners rounded
-  borderRadius: 5 ,
-  margin: 5,
+  borderRadius: 15 ,
+  margin: 50,
 
 
 
@@ -31,23 +31,23 @@ export const ButtonStyle = StyleSheet.create({
 TextLayout:{
   marginBottom : 4,
   marginRight :20,
-  color: "#fff"
+  color: "#005581"
 
 
 },
 
 ButtonDivider :{
-  width: 1,
-  height: 40,
-  backgroundColor : '#fff'
+  width: 2,
+  height: 50,
+  backgroundColor : '#005581'
 
 
 },
 IconLayout: {
    padding: 10,
    margin: 5,
-   height: 25,
-   width: 25,
+   height: 40,
+   width: 40,
    resizeMode : 'stretch',
 
 }

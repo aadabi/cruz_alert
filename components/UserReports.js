@@ -89,7 +89,8 @@ const UserReportsStackNavigator = StackNavigator({
 
 var styles = StyleSheet.create({
   appContainer:{
-    flex: 1
+    flex: 1,
+    backgroundColor:'#FFB511'
   },
   row: {
     flexDirection: 'row',

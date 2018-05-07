@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   container: {
     height: "100%",
     display: "flex",
+    backgroundColor:'#007E8C',
     justifyContent: "space-between"
   },
   logout: {

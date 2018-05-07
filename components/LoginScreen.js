@@ -49,7 +49,7 @@ export default class LoginScreen extends Component {
     return (
 
       <View style = {LoginStyle.ScreenCont}>
-        <Image resizeMode="contain" style={LoginStyle.logo} source= {require('../components/images/RSCRuzlogo.png')} />
+        <Image resizeMode="contain" style={LoginStyle.logo} source= {require('../components/images/Logoldpi.png')} />
         <View style={ButtonStyle.ButtonContainer}>
           <View style ={LoginStyle.loginContainer} >
             <TouchableOpacity style={ButtonStyle.GoogleDesign} activeOpacity={0.5} onPress={this.googleLogin}>
