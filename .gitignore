@@ -5,6 +5,7 @@ android/app/google-services.json
 android/build/
 android/.idea/workspace.xml
 android/.idea/libraries
+android/.idea/caches
 android/.DS_Store
 android/.gradle
 *.iml
