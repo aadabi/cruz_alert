@@ -15,14 +15,17 @@ class PublicReportsFeed extends Component {
 
   listenForItems(itemsRef) {
     itemsRef.limitToLast(15).on('value', (snap) => {
-      var items = [];
+      const items = [];
       snap.forEach((child) => {
         items.push({
+          uid: child.val().uid,
+          category: child.val().category,
           description: child.val().description
         });
       });
+      const result = items.reverse()
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(items)
+        dataSource: this.state.dataSource.cloneWithRows(result)
       });
     });
   }
@@ -35,9 +38,13 @@ class PublicReportsFeed extends Component {
     return (
       <TouchableHighlight
         underlayColor='#007E8C'>
+        underlayColor='#dddddd'
+        onPress={()=>this.props.navigation.navigate('Detail',
+          {description: rowData.description, category: rowData.category})}>
         <View>
           <View style={styles.row}>
-            <Text style={styles.descriptionText}>{rowData.description }</Text>
+            <Text style={styles.descriptionTitle}>{rowData.category}</Text>
+            <Text style={styles.descriptionText}>{rowData.description}</Text>
           </View>
           <View style={styles.separator} />
         </View>
@@ -57,6 +64,15 @@ class PublicReportsFeed extends Component {
     </View>
     );
   }
+}
+
+const Detail = (props) => {
+    return(
+        <View>
+          <Text style={styles.detailsTitle}> {props.navigation.state.params.category} </Text>
+          <Text style={styles.detailsText}> {props.navigation.state.params.description} </Text>
+        </View>
+    );
 }
 
 const PublicReportsFeedStackNavigator = StackNavigator({
@@ -80,7 +96,8 @@ const PublicReportsFeedStackNavigator = StackNavigator({
         </Text>
       )
     })
-  }
+  },
+  Detail: {screen: Detail}
 });
 
 var styles = StyleSheet.create({
@@ -98,7 +115,20 @@ var styles = StyleSheet.create({
     backgroundColor: '#005581',
   },
   descriptionText: {
+    flex: 3,
+  },
+  descriptionTitle: {
     flex: 1,
+    fontWeight: 'bold',
+  },
+  detailsText: {
+    fontSize: 20,
+    color: 'black',
+  },
+  detailsTitle: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: 'black',
   }
 });
 

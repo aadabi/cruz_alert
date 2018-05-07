@@ -10,37 +10,54 @@ class UserReports extends Component {
 
   constructor(props) {
     super(props);
-    this.itemsRef = firebase.database().ref('/reports/private');
+    this.privateRef = firebase.database().ref('/reports/private');
+    this.publicRef = firebase.database().ref('/reports/public');
     this.state = ({
       dataSource: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2})
     });
     this.items = [];
   }
 
-  listenForItems(itemsRef) {
-    itemsRef.orderByChild('uid').equalTo(firebase.auth().currentUser.uid).on('value', (snap) => {
-      var items = [];
+  listenForItems(privateRef, publicRef) {
+    const items = [];
+    privateRef.orderByChild('uid').equalTo(firebase.auth().currentUser.uid).on('value', (snap) => {
       snap.forEach((child) => {
         items.push({
+          uid: child.val().uid,
+          category: child.val().category,
           description: child.val().description
         });
       });
+    });
+
+    publicRef.orderByChild('uid').equalTo(firebase.auth().currentUser.uid).on('value', (snap) => {
+      snap.forEach((child) => {
+        items.push({
+          uid: child.val().uid,
+          category: child.val().category,
+          description: child.val().description
+        });
+      });
+      const result = items.reverse()
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(items)
+        dataSource: this.state.dataSource.cloneWithRows(result)
       });
     });
   }
 
   componentDidMount() {
-    this.listenForItems(this.itemsRef);
+    this.listenForItems(this.privateRef, this.publicRef);
   }
 
   renderRow(rowData) {
     return (
       <TouchableHighlight
-        underlayColor='#dddddd'>
+        underlayColor='#dddddd'
+        onPress={()=>this.props.navigation.navigate('Detail',
+          {description: rowData.description, category: rowData.category})}>
         <View>
           <View style={styles.row}>
+            <Text style={styles.descriptionTitle}>{rowData.category}</Text>
             <Text style={styles.descriptionText}>{rowData.description }</Text>
           </View>
           <View style={styles.separator} />
@@ -61,6 +78,15 @@ class UserReports extends Component {
     </View>
     );
   }
+}
+
+const Detail = (props) => {
+    return(
+        <View>
+          <Text style={styles.detailsTitle}> {props.navigation.state.params.category} </Text>
+          <Text style={styles.detailsText}> {props.navigation.state.params.description} </Text>
+        </View>
+    );
 }
 
 const UserReportsStackNavigator = StackNavigator({
@@ -85,7 +111,8 @@ const UserReportsStackNavigator = StackNavigator({
         </Text>
       )
     })
-  }
+  },
+  Detail: {screen: Detail}
 });
 
 var styles = StyleSheet.create({
@@ -103,7 +130,20 @@ var styles = StyleSheet.create({
     backgroundColor: '#CCCCCC',
   },
   descriptionText: {
+    flex: 3,
+  },
+  descriptionTitle: {
     flex: 1,
+    fontWeight: 'bold',
+  },
+  detailsText: {
+    fontSize: 20,
+    color: 'black',
+  },
+  detailsTitle: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: 'black',
   }
 });
 
