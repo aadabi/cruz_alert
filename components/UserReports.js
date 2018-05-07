@@ -67,6 +67,7 @@ const UserReportsStackNavigator = StackNavigator({
   UserReports: {
     screen: UserReports,
     navigationOptions: ({ navigation }) => ({
+      backgroundColor: '#005581',
       headerLeft: (
         <Text
           onPress={() => navigation.navigate("DrawerOpen")}

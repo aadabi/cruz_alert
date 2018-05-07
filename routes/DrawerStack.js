@@ -12,6 +12,7 @@ const DrawerStack = DrawerNavigator(
   {
     headerMode: "float",
     navigationOptions: ({ navigation }) => ({
+      backgroundColor: '#005581',
       headerLeft: (
         <Text onPress={() => navigation.navigate("DrawerOpen")}>Menu</Text>
       )
