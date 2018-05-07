@@ -138,7 +138,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#005581"
-    color: "white"
   },
   picker: {
     height: 50,

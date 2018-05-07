@@ -52,7 +52,7 @@ class UserReports extends Component {
   renderRow(rowData) {
     return (
       <TouchableHighlight
-        underlayColor='#dddddd'
+        underlayColor='#007E8C'
         onPress={()=>this.props.navigation.navigate('Detail',
           {description: rowData.description, category: rowData.category})}>
         <View>

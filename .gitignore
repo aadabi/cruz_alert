@@ -3,7 +3,7 @@
 node_modules/
 android/app/google-services.json
 android/build/
-android/.idea/*
+android/.idea/
 android/.DS_Store
 android/.gradle
 *.iml

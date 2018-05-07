@@ -37,8 +37,7 @@ class PublicReportsFeed extends Component {
   renderRow(rowData) {
     return (
       <TouchableHighlight
-        underlayColor='#007E8C'>
-        underlayColor='#dddddd'
+        underlayColor='#007E8C'
         onPress={()=>this.props.navigation.navigate('Detail',
           {description: rowData.description, category: rowData.category})}>
         <View>
