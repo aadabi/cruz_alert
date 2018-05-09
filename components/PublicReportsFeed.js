@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { StackNavigator } from "react-navigation";
+import { StackNavigator, TabNavigator } from "react-navigation";
 import { Alert, Text, View, StyleSheet, TouchableHighlight, ListView } from "react-native";
 import firebase from "react-native-firebase";
+import CampusMap from "./CampusMap";
+
 
 class PublicReportsFeed extends Component {
   constructor(props) {
@@ -74,23 +76,38 @@ const Detail = (props) => {
     );
 }
 
+const PublicTabNavigation = TabNavigator({
+  Feed: { screen: PublicReportsFeed },
+  CampusMap: { screen: CampusMap },
+}, {
+  tabBarPosition: 'bottom',
+  tabBarOptions: {
+    activeTintColor: 'white',
+    swipeEnabled: false,
+    activeBackgroundColor: 'darkblue',
+    inactiveTintColor: 'black',
+    labelStyle: {
+      fontSize: 16,
+      padding: 1
+    }
+  }
+});
+
 const PublicReportsFeedStackNavigator = StackNavigator({
   PublicReportsFeed: {
-    screen: PublicReportsFeed,
+    screen: PublicTabNavigation,
     navigationOptions: ({ navigation }) => ({
       headerLeft: (
         <Text
           onPress={() => navigation.navigate("DrawerOpen")}
-          style={{ paddingLeft: 20 }}
-        >
+          style={{ paddingLeft: 20 }}>
           Menu
         </Text>
       ),
       headerRight: (
         <Text
           onPress={() => navigation.navigate("SubmitReportModal")}
-          style={{ paddingRight: 20 }}
-        >
+          style={{ paddingRight: 20 }}>
           New Report
         </Text>
       )

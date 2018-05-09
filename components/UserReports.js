@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { StackNavigator } from "react-navigation";
+import { StackNavigator, TabNavigator } from "react-navigation";
 import { Alert, Text, View, StyleSheet, TouchableHighlight, ListView } from "react-native";
 import firebase from "react-native-firebase";
+import CampusMap from "./CampusMap";
+
 
 class UserReports extends Component {
   static navigationOptions = {
@@ -89,9 +91,26 @@ const Detail = (props) => {
     );
 }
 
+const UserTabNavigation = TabNavigator({
+  Feed: { screen: UserReports },
+  CampusMap: { screen: CampusMap },
+}, {
+  tabBarPosition: 'bottom',
+  tabBarOptions: {
+    activeTintColor: 'white',
+    swipeEnabled: false,
+    activeBackgroundColor: 'darkblue',
+    inactiveTintColor: 'black',
+    labelStyle: {
+      fontSize: 16,
+      padding: 1
+    }
+  }
+});
+
 const UserReportsStackNavigator = StackNavigator({
   UserReports: {
-    screen: UserReports,
+    screen: UserTabNavigation,
     navigationOptions: ({ navigation }) => ({
       backgroundColor: '#005581',
       headerLeft: (
