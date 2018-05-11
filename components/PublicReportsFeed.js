@@ -1,11 +1,21 @@
 import React, { Component } from "react";
 import { StackNavigator, TabNavigator } from "react-navigation";
-import { Alert, Text, View, StyleSheet, TouchableHighlight, ListView } from "react-native";
+import { Alert, Text, View, StyleSheet, Image, TouchableHighlight, ListView } from "react-native";
 import firebase from "react-native-firebase";
 import CampusMap from "./CampusMap";
 
 
-class PublicReportsFeed extends Component {
+class PublicReportsFeed extends React.Component {
+  static navigationOptions = {
+    drawerLabel: 'Home reports',
+    drawerIcon: () => (
+      <Image
+        source= {require('../components/images/house.png')}
+        style={{width: 30, height: 30, borderRadius: 15}}
+      />
+    )
+  }
+
   constructor(props) {
     super(props);
     this.itemsRef = firebase.database().ref('/reports/public');

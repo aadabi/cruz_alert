@@ -1,14 +1,20 @@
 import React, { Component } from "react";
 import { StackNavigator, TabNavigator } from "react-navigation";
-import { Alert, Text, View, StyleSheet, TouchableHighlight, ListView } from "react-native";
+import { Alert, Text, View, Image, StyleSheet, TouchableHighlight, ListView } from "react-native";
 import firebase from "react-native-firebase";
 import CampusMap from "./CampusMap";
 
 
 class UserReports extends Component {
   static navigationOptions = {
-    drawerLabel: "Your Reports"
-  };
+    drawerLabel: 'Own Reports',
+    drawerIcon: () => (
+      <Image
+        source= {require('../components/images/group.png')}
+        style={{width: 30, height: 30, borderRadius: 15}}
+      />
+    )
+  }
 
   constructor(props) {
     super(props);
