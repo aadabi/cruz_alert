@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   },
   descriptionInput: {
     borderRadius: 15,
-    backgroundColor: "#FFB511",
+    backgroundColor: "#FFD200",
     borderColor: '#005581',
     borderWidth: 2,
     height: "60%",

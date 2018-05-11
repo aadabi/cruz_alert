@@ -103,10 +103,10 @@ const UserTabNavigation = TabNavigator({
 }, {
   tabBarPosition: 'bottom',
   tabBarOptions: {
-    activeTintColor: 'white',
+    activeTintColor: '#FFD200',
     swipeEnabled: false,
-    activeBackgroundColor: 'darkblue',
-    inactiveTintColor: 'black',
+    activeBackgroundColor: '#1295D8',
+    inactiveTintColor: '#007E8C',
     labelStyle: {
       fontSize: 16,
       padding: 1
@@ -143,7 +143,7 @@ const UserReportsStackNavigator = StackNavigator({
 var styles = StyleSheet.create({
   appContainer:{
     flex: 1,
-    backgroundColor:'#FFB511'
+    backgroundColor:'#FFD200'
   },
   row: {
     flexDirection: 'row',

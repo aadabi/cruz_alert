@@ -92,10 +92,10 @@ const PublicTabNavigation = TabNavigator({
 }, {
   tabBarPosition: 'bottom',
   tabBarOptions: {
-    activeTintColor: 'white',
+    activeTintColor: '#FFD200',
     swipeEnabled: false,
-    activeBackgroundColor: 'darkblue',
-    inactiveTintColor: 'black',
+    activeBackgroundColor: '#1295D8',
+    inactiveTintColor: '#007E8C',
     labelStyle: {
       fontSize: 16,
       padding: 1
@@ -128,7 +128,7 @@ const PublicReportsFeedStackNavigator = StackNavigator({
 
 var styles = StyleSheet.create({
   appContainer:{
-    backgroundColor:'#FFB511',
+    backgroundColor:'#FFD200',
     flex: 1
   },
   row: {
