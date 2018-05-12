@@ -10,8 +10,8 @@ class UserReports extends Component {
     drawerLabel: 'Own Reports',
     drawerIcon: () => (
       <Image
-        source= {require('../components/images/group.png')}
-        style={{width: 30, height: 30, borderRadius: 15}}
+        source= {require('../components/images/analytics.png')}
+        style={{width: 40, height: 40, borderRadius: 5}}
       />
     )
   }
@@ -130,8 +130,7 @@ const UserReportsStackNavigator = StackNavigator({
       headerRight: (
         <Text
           onPress={() => navigation.navigate("SubmitReportModal")}
-          style={{ paddingRight: 20 }}
-        >
+          style={{ paddingRight: 20 }}>
           New Report
         </Text>
       )

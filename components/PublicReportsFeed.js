@@ -10,8 +10,8 @@ class PublicReportsFeed extends React.Component {
     drawerLabel: 'Home reports',
     drawerIcon: () => (
       <Image
-        source= {require('../components/images/house.png')}
-        style={{width: 30, height: 30, borderRadius: 15}}
+        source= {require('../components/images/home.png')}
+        style={{width: 40, height: 40, resizeMode: 'stretch'}}
       />
     )
   }
