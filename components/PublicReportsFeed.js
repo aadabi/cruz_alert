@@ -49,7 +49,7 @@ class PublicReportsFeed extends React.Component {
   renderRow(rowData) {
     return (
       <TouchableHighlight
-        underlayColor='#007E8C'
+        underlayColor='white'
         onPress={()=>this.props.navigation.navigate('Detail',
           {description: rowData.description, category: rowData.category})}>
         <View>
@@ -94,10 +94,10 @@ const PublicTabNavigation = TabNavigator({
   tabBarOptions: {
     activeTintColor: '#FFD200',
     swipeEnabled: false,
-    activeBackgroundColor: '#1295D8',
-    inactiveTintColor: '#007E8C',
+    activeBackgroundColor: '#0067A6',
+    inactiveTintColor: '#494949',
     labelStyle: {
-      fontSize: 16,
+      fontSize: 15,
       padding: 1
     }
   }
@@ -128,33 +128,41 @@ const PublicReportsFeedStackNavigator = StackNavigator({
 
 var styles = StyleSheet.create({
   appContainer:{
-    backgroundColor:'#FFD200',
+    backgroundColor:'#FFF7D6',
     flex: 1
   },
   row: {
     flexDirection: 'row',
     padding: 12,
-    height: 44
+    height: 55
   },
   separator: {
-    height: 1,
-    backgroundColor: '#005581',
+    height: 2,
+    backgroundColor: '#0067a6',
   },
   descriptionText: {
-    flex: 3,
+    fontSize: 21,
+    fontFamily: "normal",
+    color: '#494949',
+    flex: 2
   },
   descriptionTitle: {
+    fontSize: 23,
+    fontFamily: "monospace",
+    color: '#0067a6',
     flex: 1,
-    fontWeight: 'bold',
+    fontWeight: '500',
   },
   detailsText: {
-    fontSize: 20,
-    color: 'black',
+    fontFamily: "serif",
+    fontSize: 30,
+    color: '#0067a6',
   },
   detailsTitle: {
     fontSize: 26,
+    fontFamily: "monospace",
     fontWeight: 'bold',
-    color: 'black',
+    color: '#0067a6'
   }
 });
 
