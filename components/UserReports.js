@@ -11,7 +11,7 @@ class UserReports extends Component {
     drawerIcon: () => (
       <Image
         source= {require('../components/images/analytics.png')}
-        style={{width: 40, height: 40, borderRadius: 5}}
+        style={{width: 40, height: 40, resizeMode: 'stretch'}}
       />
     )
   }
@@ -60,7 +60,7 @@ class UserReports extends Component {
   renderRow(rowData) {
     return (
       <TouchableHighlight
-        underlayColor='#007E8C'
+        underlayColor='#FFF7D6'
         onPress={()=>this.props.navigation.navigate('Detail',
           {description: rowData.description, category: rowData.category})}>
         <View>
@@ -103,12 +103,12 @@ const UserTabNavigation = TabNavigator({
 }, {
   tabBarPosition: 'bottom',
   tabBarOptions: {
-    activeTintColor: '#FFD200',
+    activeTintColor: '#FFFF52',
     swipeEnabled: false,
-    activeBackgroundColor: '#1295D8',
-    inactiveTintColor: '#007E8C',
+    activeBackgroundColor: '#0067A6',
+    inactiveTintColor: '#D1D1D1',
     labelStyle: {
-      fontSize: 16,
+      fontSize: 15,
       padding: 1
     }
   }
@@ -118,7 +118,7 @@ const UserReportsStackNavigator = StackNavigator({
   UserReports: {
     screen: UserTabNavigation,
     navigationOptions: ({ navigation }) => ({
-      backgroundColor: '#005581',
+      backgroundColor: '#FFFF52',
       headerLeft: (
         <Text
           onPress={() => navigation.navigate("DrawerOpen")}
@@ -141,33 +141,41 @@ const UserReportsStackNavigator = StackNavigator({
 
 var styles = StyleSheet.create({
   appContainer:{
-    flex: 1,
-    backgroundColor:'#FFD200'
+    backgroundColor:'#D1D1D1',
+    flex: 1
   },
   row: {
     flexDirection: 'row',
     padding: 12,
-    height: 44
+    height: 55
   },
   separator: {
-    height: 1,
-    backgroundColor: '#CCCCCC',
+    height: 0.5,
+    backgroundColor: '#FFFF52',
   },
   descriptionText: {
-    flex: 3,
+    fontSize: 21,
+    fontFamily: "normal",
+    color: '#494949',
+    flex: 2
   },
   descriptionTitle: {
+    fontSize: 23,
+    fontFamily: "monospace",
+    color: '#494949',
     flex: 1,
-    fontWeight: 'bold',
+    fontWeight: '500',
   },
   detailsText: {
-    fontSize: 20,
-    color: 'black',
+    fontFamily: "serif",
+    fontSize: 30,
+    color: '#0067a6'
   },
   detailsTitle: {
     fontSize: 26,
+    fontFamily: "monospace",
     fontWeight: 'bold',
-    color: 'black',
+    color: '#0067a6'
   }
 });
 

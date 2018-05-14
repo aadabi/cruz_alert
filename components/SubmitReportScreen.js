@@ -84,11 +84,11 @@ class SubmitReportScreen extends Component {
           selectedValue = {this.state.category}
           onValueChange = {this.updateCategory}
           style= {styles.picker}>
-          <Picker.Item color="blue" label = "Theft" value = "Theft"/>
-          <Picker.Item color="blue" label = "Assault" value = "Assault"/>
-          <Picker.Item color="blue" label = "Domestic" value ="Domestic"/>
-          <Picker.Item color="blue" label = "Weapon" value = "Weapon"/>
-          <Picker.Item color="blue" label = "Drugs" value = "Drugs"/>
+          <Picker.Item color="#494949" label = "THEFT" value = "Theft"/>
+          <Picker.Item color="#494949" label = "ASSAULT" value = "Assault"/>
+          <Picker.Item color="#494949" label = "DOMESTIC" value ="Domestic"/>
+          <Picker.Item color="#494949" label = "WEAPON" value = "Weapon"/>
+          <Picker.Item color="#494949" label = "DRUGS" value = "Drugs"/>
         </Picker>
 
         <TextInput
@@ -103,7 +103,7 @@ class SubmitReportScreen extends Component {
           onValueChange={value => this.setState({ public: value })}
         />
         <TouchableOpacity style={styles.button} onPress={this.handleSubmit}>
-          <Text style={styles.buttonText}>Submit Report</Text>
+          <Text style={styles.buttonText}>SUBMIT REPORT</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
     );
@@ -115,12 +115,13 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     paddingTop: 50,
-    backgroundColor: "#007E8C",
+    backgroundColor: "#D1D1D1",
   },
   descriptionInput: {
-    borderRadius: 15,
-    backgroundColor: "#FFD200",
-    borderColor: '#005581',
+    borderRadius: 10,
+    fontSize: 16,
+    backgroundColor: "#F2F2F2",
+    borderColor: '#FFFF52',
     borderWidth: 2,
     height: "60%",
     padding: 5,
@@ -129,19 +130,20 @@ const styles = StyleSheet.create({
     textAlignVertical: "top"
   },
   button: {
-    borderRadius: 15,
+    borderRadius: 23,
     alignItems: "center",
-    borderColor: '#005581',
-    borderWidth: 2,
+    borderColor: '#FFFF52',
+    borderWidth: 1,
     padding: 20,
-    backgroundColor: "#FFB511"
+    backgroundColor: "#8C8C8C"
   },
   buttonText: {
-    color: "#005581"
+    color: "#FFFFFF",
+    fontSize: 18
   },
   picker: {
     height: 50,
-    width: 100
+    width: 150
   }
 });
 

@@ -14,11 +14,11 @@ export const ButtonStyle = StyleSheet.create({
   //so that text image are in a row
   flexDirection: 'row',
   alignItems: 'center',
-  backgroundColor: '#FFB511',
+  backgroundColor: '#FFFF52',
   //color of the divider between image and text
   //also the border of the button
-  borderColor: '#005581',
-  borderWidth: 2,
+  borderColor: '#D1D1D1',
+  borderWidth: 1,
   height: 50,
   //this makes button corners rounded
   borderRadius: 15 ,

@@ -5,7 +5,7 @@ export const LoginStyle = StyleSheet.create({
        alignItems:'center',
        justifyContent:'center',
        flex: 1,
-       backgroundColor:'#0067a6'
+       backgroundColor:'#1295D8'
 
    },
    loginContainer:{
@@ -17,9 +17,9 @@ export const LoginStyle = StyleSheet.create({
    logo:{
        position: 'absolute',
        borderWidth:.8,
-       borderColor:'#0067a6',
-       width:450,
-       height:450,
-       padding:10
+       borderColor:'#1295D8',
+       width:300,
+       height:300,
+       padding:5
    }
 });
