@@ -54,12 +54,25 @@ class PublicReportsFeed extends React.Component {
       <View>
         <FlatList
           data={this.state.reports}
-          renderItem={({ item }) => <Text>{item.description}</Text>}
+          renderItem={({ item }) => {
+            console.log(item);
+            return <Report report={item} />;
+          }}
         />
       </View>
     );
   }
 }
+
+const Report = props => {
+  console.log(props);
+  return (
+    <View>
+      <Text>{props.report.category}</Text>
+      <Text>{props.report.description}</Text>
+    </View>
+  );
+};
 
 const Detail = props => {
   return (
