@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import firebase from "react-native-firebase";
 import Report from "./Report";
-import CampusMap from "./CampusMap";
 
 class PublicReportsFeed extends React.Component {
   constructor(props) {
@@ -52,14 +51,12 @@ class PublicReportsFeed extends React.Component {
 
   render() {
     return (
-      <View>
-        <FlatList
-          data={this.state.reports}
-          renderItem={({ item }) => {
-            return <Report report={item} />;
-          }}
-        />
-      </View>
+      <FlatList
+        data={this.state.reports}
+        renderItem={({ item }) => {
+          return <Report report={item} />;
+        }}
+      />
     );
   }
 }
@@ -79,29 +76,9 @@ const Detail = props => {
   );
 };
 
-const PublicTabNavigation = TabNavigator(
-  {
-    Feed: { screen: PublicReportsFeed },
-    CampusMap: { screen: CampusMap }
-  },
-  {
-    tabBarPosition: "bottom",
-    tabBarOptions: {
-      activeTintColor: "#FFFF52",
-      swipeEnabled: false,
-      activeBackgroundColor: "#0067A6",
-      inactiveTintColor: "#D1D1D1",
-      labelStyle: {
-        fontSize: 15,
-        padding: 1
-      }
-    }
-  }
-);
-
 const PublicReportsFeedStackNavigator = StackNavigator({
   PublicReportsFeed: {
-    screen: PublicTabNavigation,
+    screen: PublicReportsFeed,
     navigationOptions: ({ navigation }) => ({
       backgroundColor: "#FFFF52",
       headerLeft: (
