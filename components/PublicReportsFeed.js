@@ -10,6 +10,7 @@ import {
   FlatList
 } from "react-native";
 import firebase from "react-native-firebase";
+import Report from "./Report";
 import CampusMap from "./CampusMap";
 
 class PublicReportsFeed extends React.Component {
@@ -55,7 +56,6 @@ class PublicReportsFeed extends React.Component {
         <FlatList
           data={this.state.reports}
           renderItem={({ item }) => {
-            console.log(item);
             return <Report report={item} />;
           }}
         />
@@ -63,16 +63,6 @@ class PublicReportsFeed extends React.Component {
     );
   }
 }
-
-const Report = props => {
-  console.log(props);
-  return (
-    <View>
-      <Text>{props.report.category}</Text>
-      <Text>{props.report.description}</Text>
-    </View>
-  );
-};
 
 const Detail = props => {
   return (
@@ -134,7 +124,5 @@ const PublicReportsFeedStackNavigator = StackNavigator({
   },
   Detail: { screen: Detail }
 });
-
-var styles = StyleSheet.create({});
 
 export default PublicReportsFeedStackNavigator;
