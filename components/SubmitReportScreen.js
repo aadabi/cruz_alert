@@ -35,7 +35,7 @@ class SubmitReportScreen extends Component {
           });
        },
        (error) => Alert.alert(error.message),
-       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+       { enableHighAccuracy: true, timeout: 200000, maximumAge: 1000 }
     );
   }
 
@@ -54,10 +54,11 @@ class SubmitReportScreen extends Component {
     const email = firebase.auth().currentUser.email;
     const uid = firebase.auth().currentUser.uid;
     const subfield = this.state.public ? "public" : "private";
+    const thankCount = 0;
     const reportRef = firebase
       .database()
       .ref(`/reports/${subfield}/`)
-      .push({ uid, displayName, email, category, description, timestamp, longitude, latitude });
+      .push({ uid, displayName, email, category, description, timestamp, longitude, latitude, thankCount });
     firebase
       .database()
       .ref(`/users/${uid}/posts/${subfield}/${reportRef.key}`)
