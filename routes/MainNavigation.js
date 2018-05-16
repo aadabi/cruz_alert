@@ -24,7 +24,8 @@ const MainNavigation = StackNavigator(
   },
   {
     mode: "modal",
-    headerMode: "none"
+    headerMode: "none",
+    backgroundColor: '#005581'
   }
 );
 
