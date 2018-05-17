@@ -13,82 +13,80 @@ import {
 } from "react-native";
 import { StackNavigator } from "react-navigation";
 import firebase from "react-native-firebase";
+import { submitReport } from "../api";
 
 class SubmitReportScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { category: "Theft", longitude: "", latutude: "" , description: "", public: false };
-    this.submitReport = this.submitReport.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      category: "Theft",
+      longitude: "",
+      latutude: "",
+      description: "",
+      isPublic: false
+    };
   }
 
   static navigationOptions = {
     drawerLabel: "Submit a Report"
   };
 
+  // TODO: we might want to wait until a report is submitted to get the location
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
-       (position) => {
-          this.setState({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
-          });
-       },
-       (error) => Alert.alert(error.message),
-       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+      position => {
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        });
+      },
+      error => Alert.alert(error.message),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
   }
 
-  submitReport() {
+  handleSubmit = () => {
     const description = this.state.description;
     if (description == null) {
       console.log("no input from report");
       return;
     }
-    // TODO: get the time from the server
-    const timestamp = new Date();
     const category = this.state.category;
     const longitude = this.state.longitude;
     const latitude = this.state.latitude;
-    const displayName = firebase.auth().currentUser.displayName;
-    const email = firebase.auth().currentUser.email;
-    const uid = firebase.auth().currentUser.uid;
-    const subfield = this.state.public ? "public" : "private";
-    const reportRef = firebase
-      .database()
-      .ref(`/reports/${subfield}/`)
-      .push({ uid, displayName, email, category, description, timestamp, longitude, latitude });
-    firebase
-      .database()
-      .ref(`/users/${uid}/posts/${subfield}/${reportRef.key}`)
-      .set(true);
-  }
-
-  handleSubmit() {
-    this.submitReport();
+    const isPublic = this.state.isPublic;
+    const report = {
+      description,
+      category,
+      longitude,
+      latitude,
+      user,
+      isPublic
+    };
+    submitReport(report);
     Keyboard.dismiss();
     this.props.navigation.navigate("Main");
-  }
+  };
 
-  updateCategory = (cat) => {
-    this.setState({ category: cat })
-  }
+  updateCategory = cat => {
+    this.setState({ category: cat });
+  };
 
   render() {
     // TODO: change the styling and color of the picker.item text and
     // pop up box for it
     return (
       <KeyboardAvoidingView style={styles.container}>
-
         <Picker
-          selectedValue = {this.state.category}
-          onValueChange = {this.updateCategory}
-          style= {styles.picker}>
-          <Picker.Item color="#494949" label = "THEFT" value = "Theft"/>
-          <Picker.Item color="#494949" label = "ASSAULT" value = "Assault"/>
-          <Picker.Item color="#494949" label = "DOMESTIC" value ="Domestic"/>
-          <Picker.Item color="#494949" label = "WEAPON" value = "Weapon"/>
-          <Picker.Item color="#494949" label = "DRUGS" value = "Drugs"/>
+          selectedValue={this.state.category}
+          onValueChange={this.updateCategory}
+          style={styles.picker}
+        >
+          <Picker.Item color="#494949" label="THEFT" value="Theft" />
+          <Picker.Item color="#494949" label="ASSAULT" value="Assault" />
+          <Picker.Item color="#494949" label="DOMESTIC" value="Domestic" />
+          <Picker.Item color="#494949" label="WEAPON" value="Weapon" />
+          <Picker.Item color="#494949" label="DRUGS" value="Drugs" />
         </Picker>
 
         <TextInput
@@ -99,8 +97,8 @@ class SubmitReportScreen extends Component {
         />
         <Text>Make report public</Text>
         <Switch
-          value={this.state.public}
-          onValueChange={value => this.setState({ public: value })}
+          value={this.state.isPublic}
+          onValueChange={value => this.setState({ isPublic: value })}
         />
         <TouchableOpacity style={styles.button} onPress={this.handleSubmit}>
           <Text style={styles.buttonText}>SUBMIT REPORT</Text>
@@ -115,13 +113,13 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     paddingTop: 50,
-    backgroundColor: "#D1D1D1",
+    backgroundColor: "#D1D1D1"
   },
   descriptionInput: {
     borderRadius: 10,
     fontSize: 16,
     backgroundColor: "#F2F2F2",
-    borderColor: '#FFFF52',
+    borderColor: "#FFFF52",
     borderWidth: 2,
     height: "60%",
     padding: 5,
@@ -132,7 +130,7 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 23,
     alignItems: "center",
-    borderColor: '#FFFF52',
+    borderColor: "#FFFF52",
     borderWidth: 1,
     padding: 20,
     backgroundColor: "#8C8C8C"
