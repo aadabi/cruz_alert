@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import { StackNavigator, TabNavigator } from "react-navigation";
+import { StackNavigator } from "react-navigation";
 import {
-  Alert,
   Text,
   View,
   StyleSheet,
   Image,
   TouchableHighlight,
-  FlatList
+  Button
 } from "react-native";
 import firebase from "react-native-firebase";
-import Report from "./Report";
+import ReportList from "./ReportList";
 
 class PublicReportsFeed extends React.Component {
   constructor(props) {
@@ -50,14 +49,7 @@ class PublicReportsFeed extends React.Component {
   }
 
   render() {
-    return (
-      <FlatList
-        data={this.state.reports}
-        renderItem={({ item }) => {
-          return <Report report={item} />;
-        }}
-      />
-    );
+    return <ReportList reports={this.state.reports} />;
   }
 }
 
@@ -83,19 +75,25 @@ const PublicReportsFeedStackNavigator = StackNavigator({
       backgroundColor: "#FFFF52",
       headerLeft: (
         <Text
-          onPress={() => navigation.navigate("DrawerOpen")}
+          onPress={() => {
+            console.log("pressed drawer open");
+            navigation.navigate("DrawerOpen");
+          }}
           style={{ paddingLeft: 20 }}
         >
           Menu
         </Text>
       ),
       headerRight: (
-        <Text
-          onPress={() => navigation.navigate("SubmitReportModal")}
+        <TouchableHighlight
+          onPress={() => {
+            console.log("pressed submit report");
+            navigation.navigate("SubmitReportModal");
+          }}
           style={{ paddingRight: 20 }}
         >
-          New Report
-        </Text>
+          <Text>Test</Text>
+        </TouchableHighlight>
       )
     })
   },
