@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import firebase from "react-native-firebase";
 import ReportList from "./ReportList";
+import { getPublicReports } from "../api";
 
 class PublicReportsFeed extends React.Component {
   constructor(props) {
@@ -29,23 +30,9 @@ class PublicReportsFeed extends React.Component {
     )
   };
 
-  fetchReports() {
-    const reportsRef = firebase.database().ref("/reports/public");
-    reportsRef.once("value", snap => {
-      const reports = [];
-      snap.forEach(child => {
-        reports.push({
-          category: child.val().category,
-          description: child.val().description
-        });
-      });
-      reports.reverse();
-      this.setState({ reports });
-    });
-  }
-
-  componentDidMount() {
-    this.fetchReports();
+  async componentDidMount() {
+    const reports = await getPublicReports();
+    this.setState({ reports });
   }
 
   render() {

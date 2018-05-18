@@ -12,7 +12,6 @@ import {
   Picker
 } from "react-native";
 import { StackNavigator } from "react-navigation";
-import firebase from "react-native-firebase";
 import { submitReport } from "../api";
 
 class SubmitReportScreen extends Component {
@@ -60,7 +59,6 @@ class SubmitReportScreen extends Component {
       category,
       longitude,
       latitude,
-      user,
       isPublic
     };
     submitReport(report);

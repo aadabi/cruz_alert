@@ -10,6 +10,7 @@ import {
   ListView
 } from "react-native";
 import firebase from "react-native-firebase";
+import ReportList from "./ReportList";
 
 class UserReports extends Component {
   static navigationOptions = {
@@ -24,14 +25,25 @@ class UserReports extends Component {
 
   constructor(props) {
     super(props);
-    this.privateRef = firebase.database().ref("/reports/private");
-    this.publicRef = firebase.database().ref("/reports/public");
     this.state = {
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2
-      })
+      publicReports: [],
+      privateReports: []
     };
-    this.items = [];
+  }
+
+  fetchReports() {
+    const uid = firebase.auth().currentUser.uid;
+    const userReportsPath = `/users/${uid}/reports`;
+    const privateReportsRef = firebase
+      .database()
+      .ref(`${userReportsPath}/private`);
+    const publicReportsRef = firebase
+      .database()
+      .ref(`${userReportsPath}/public`);
+    privateReportsRef.once("value", snap => {
+      console.log(snap);
+    });
+    publicReportsRef.once("value", snap => {});
   }
 
   listenForItems(privateRef, publicRef) {
@@ -68,7 +80,7 @@ class UserReports extends Component {
   }
 
   componentDidMount() {
-    this.listenForItems(this.privateRef, this.publicRef);
+    this.fetchReports();
   }
 
   renderRow(rowData) {
@@ -96,12 +108,8 @@ class UserReports extends Component {
   render() {
     return (
       <View style={styles.appContainer}>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this.renderRow.bind(this)}
-          enableEmptySection={true}
-          style={{ flex: 1 }}
-        />
+        <Text>Private Reports</Text>
+        <Text>Public Reports</Text>
       </View>
     );
   }
