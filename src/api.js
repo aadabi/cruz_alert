@@ -35,21 +35,18 @@ const getReports = ref => {
 };
 
 export const submitReport = reportData => {
-  const { description, category, longitude, latitude, isPublic } = reportData;
+  const { displayName, email, uid } = firebase.auth().currentUser;
   const timestamp = new Date();
-  const { uid, displayName, email } = firebase.auth().currentUser;
-  const subfield = isPublic ? "public" : "private";
   const report = {
-    uid,
+    ...reportData,
     displayName,
     email,
-    category,
-    description,
+    uid,
     timestamp,
-    longitude,
-    latitude,
     thankCount: 0
   };
+  const subfield = reportData.isPublic ? "public" : "private";
+  console.log(report);
   const reportRef = firebase
     .database()
     .ref(`/reports/${subfield}/`)

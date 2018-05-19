@@ -45,16 +45,20 @@ class SubmitReportScreen extends Component {
   }
 
   handleSubmit = () => {
-    const description = this.state.description;
-    if (description == null) {
-      console.log("no input from report");
+    const {
+      title,
+      description,
+      category,
+      longitude,
+      latitude,
+      isPublic
+    } = this.state;
+    if (title === null || description === null) {
+      // TODO: provide user feedback
       return;
     }
-    const category = this.state.category;
-    const longitude = this.state.longitude;
-    const latitude = this.state.latitude;
-    const isPublic = this.state.isPublic;
     const report = {
+      title,
       description,
       category,
       longitude,
@@ -86,6 +90,11 @@ class SubmitReportScreen extends Component {
           <Picker.Item color="#494949" label="WEAPON" value="Weapon" />
           <Picker.Item color="#494949" label="DRUGS" value="Drugs" />
         </Picker>
+
+        <TextInput
+          placeholder="Please enter a title for your report"
+          onChangeText={title => this.setState({ title })}
+        />
 
         <TextInput
           multiline
