@@ -5,7 +5,7 @@ import {
   View,
   StyleSheet,
   Image,
-  TouchableHighlight,
+  TouchableOpacity,
   Button
 } from "react-native";
 import firebase from "react-native-firebase";
@@ -61,25 +61,22 @@ const PublicReportsFeedStackNavigator = StackNavigator({
     navigationOptions: ({ navigation }) => ({
       backgroundColor: "#FFFF52",
       headerLeft: (
-        <Text
-          onPress={() => {
-            console.log("pressed drawer open");
-            navigation.navigate("DrawerOpen");
-          }}
+        <TouchableOpacity
+          onPress={() => navigation.navigate("DrawerOpen")}
           style={{ paddingLeft: 20 }}
         >
-          Menu
-        </Text>
+          <Text>Menu</Text>
+        </TouchableOpacity>
       ),
       headerRight: (
-        <TouchableHighlight
+        <TouchableOpacity
           onPress={() => {
             navigation.navigate("SubmitReportModal");
           }}
           style={{ paddingRight: 20 }}
         >
-          <Text>Submit Report</Text>
-        </TouchableHighlight>
+          <Text>New Report</Text>
+        </TouchableOpacity>
       )
     })
   },

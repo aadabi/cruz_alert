@@ -6,7 +6,7 @@ import {
   View,
   Image,
   StyleSheet,
-  TouchableHighlight,
+  TouchableOpacity,
   ListView
 } from "react-native";
 import firebase from "react-native-firebase";
@@ -66,20 +66,22 @@ const UserReportsStackNavigator = StackNavigator({
     navigationOptions: ({ navigation }) => ({
       backgroundColor: "#FFFF52",
       headerLeft: (
-        <Text
+        <TouchableOpacity
           onPress={() => navigation.navigate("DrawerOpen")}
           style={{ paddingLeft: 20 }}
         >
-          Menu
-        </Text>
+          <Text>Menu</Text>
+        </TouchableOpacity>
       ),
       headerRight: (
-        <Text
-          onPress={() => navigation.navigate("SubmitReportModal")}
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("SubmitReportModal");
+          }}
           style={{ paddingRight: 20 }}
         >
-          New Report
-        </Text>
+          <Text>New Report</Text>
+        </TouchableOpacity>
       )
     })
   },
