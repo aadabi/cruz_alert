@@ -17,22 +17,33 @@ export const getUserReports = uid => {
 
 const getReports = ref => {
   return new Promise((resolve, reject) => {
+    const { uid } = firebase.auth().currentUser;
     ref.once("value", snap => {
       const reports = [];
       snap.forEach(child => {
-        const { title, category, description, thankCount, usersThanked } = child.val();
-        const temp = child.val().hasUserThanked;
-        // encode as string to pass into array
-        const hasUserThanked = JSON.stringify(temp);
-        const currKey = child.key;
-        reports.push({
+        const {
           title,
-          currKey,
+          category,
+          description,
+          thankCount,
+          usersThanked,
+          isPublic
+        } = child.val();
+        const hasUserThanked =
+          child.val().hasUserThanked !== undefined &&
+          child.val().hasUserThanked[uid];
+        const reportID = child.key;
+        const report = {
+          title,
+          reportID,
           category,
           description,
           thankCount,
           hasUserThanked,
-        });
+          isPublic
+        };
+        console.log(report);
+        reports.push(report);
       });
       resolve(reports.reverse());
     });
@@ -62,53 +73,31 @@ export const submitReport = reportData => {
     .set(report);
 };
 
-export const toggleThank = (reportID, prevThankCount, prevHasUserThanked) => {
+export const toggleThank = (reportID, isPublic) => {
   const { uid } = firebase.auth().currentUser;
-  // check if user already thanked report
-  firebase
+  const subfield = isPublic ? "public" : "private";
+  console.log("ispublic:", subfield);
+  const reportRef = firebase.database().ref(`/reports/${subfield}/${reportID}`);
+  const userReportRef = firebase
     .database()
-    .ref(`/reports/public/${reportID}/hasUserThanked`)
-    .once("value", snap => {
-      const findUser = snap.val();
-      if (findUser == null) {
-        incrementThank(uid, reportID, 0, {});
-      }
-      console.log("findUser: ", findUser[uid]);
-      // check if user has thanked this report
-      if (findUser[uid] == true) {
-        //decrement
-        console.log("decrement");
-        decrementThank(uid, reportID, prevThankCount, prevHasUserThanked);
-      } else {
-        //increment
-        console.log("increment");
-        incrementThank(uid, reportID, prevThankCount, prevHasUserThanked);
-      }
+    .ref(`/userReports/${uid}/${reportID}`);
+  reportRef.once("value", snap => {
+    console.log(snap.val().hasUserThanked);
+    const hasUserThanked =
+      snap.val().hasUserThanked !== undefined &&
+      snap.val().hasUserThanked[uid] === true;
+    const thankCount = snap.val().thankCount;
+    console.log("thankCount:", thankCount);
+    if (hasUserThanked) {
+      reportRef.child(`/hasUserThanked/${uid}`).remove();
+      userReportRef.child(`/hasUserThanked/${uid}`).remove();
+      reportRef.child("/thankCount").set(thankCount - 1);
+      userReportRef.child("/thankCount").set(thankCount - 1);
+    } else {
+      reportRef.child(`/hasUserThanked/${uid}`).set(true);
+      userReportRef.child(`/hasUserThanked/${uid}`).set(true);
+      reportRef.child("/thankCount").set(thankCount + 1);
+      userReportRef.child("/thankCount").set(thankCount + 1);
+    }
   });
-  
-  
 };
-
-const incrementThank = (uid, reportID, prevThankCount, prevHasUserThanked) => {
-    const thankCount = prevThankCount + 1;
-    const hasUserThanked = prevHasUserThanked;
-    hasUserThanked[uid] = true;
-    const thankData = { thankCount, hasUserThanked };
-    firebase
-      .database()
-      .ref(`/reports/public/${reportID}/`)
-      .update(thankData);
-}
-
-const decrementThank = (uid, reportID, prevThankCount, _prevHasUserThanked) => {
-  // decode json object
-  const prevHasUserThanked = JSON.parse(_prevHasUserThanked);
-  const thankCount = prevThankCount - 1;
-  delete prevHasUserThanked[uid];
-  const hasUserThanked = prevHasUserThanked;
-  const thankData = { thankCount, hasUserThanked }
-  firebase
-    .database()
-    .ref(`/reports/public/${reportID}/`)
-    .update(thankData);
-}

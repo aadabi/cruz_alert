@@ -19,8 +19,8 @@ class SubmitReportScreen extends Component {
     super(props);
     this.state = {
       category: "Theft",
-      longitude: "",
-      latutude: "",
+      longitude: null,
+      latitude: null,
       description: "",
       isPublic: false
     };
@@ -45,33 +45,21 @@ class SubmitReportScreen extends Component {
   }
 
   handleSubmit = () => {
-    const {
-      title,
-      description,
-      category,
-      longitude,
-      latitude,
-      isPublic
-    } = this.state;
+    const { title, description } = this.state;
     if (title === null || description === null) {
       // TODO: provide user feedback
       return;
     }
     const report = {
-      title,
-      description,
-      category,
-      longitude,
-      latitude,
-      isPublic
+      ...this.state
     };
     submitReport(report);
     Keyboard.dismiss();
     this.props.navigation.navigate("Main");
   };
 
-  updateCategory = cat => {
-    this.setState({ category: cat });
+  updateCategory = category => {
+    this.setState({ category });
   };
 
   render() {

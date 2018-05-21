@@ -74,12 +74,11 @@ const PublicReportsFeedStackNavigator = StackNavigator({
       headerRight: (
         <TouchableHighlight
           onPress={() => {
-            console.log("pressed submit report");
             navigation.navigate("SubmitReportModal");
           }}
           style={{ paddingRight: 20 }}
         >
-          <Text>Test</Text>
+          <Text>Submit Report</Text>
         </TouchableHighlight>
       )
     })
