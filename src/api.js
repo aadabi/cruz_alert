@@ -74,28 +74,28 @@ export const submitReport = reportData => {
 };
 
 export const toggleThank = (reportID, isPublic) => {
-  const { uid } = firebase.auth().currentUser;
+  const currentUserUID = firebase.auth().currentUser.uid;
   const subfield = isPublic ? "public" : "private";
   console.log("ispublic:", subfield);
   const reportRef = firebase.database().ref(`/reports/${subfield}/${reportID}`);
-  const userReportRef = firebase
-    .database()
-    .ref(`/userReports/${uid}/${reportID}`);
   reportRef.once("value", snap => {
-    console.log(snap.val().hasUserThanked);
+    const reportOwnerUID = snap.val().uid;
+    const userReportRef = firebase
+      .database()
+      .ref(`/userReports/${reportOwnerUID}/${reportID}`);
     const hasUserThanked =
       snap.val().hasUserThanked !== undefined &&
-      snap.val().hasUserThanked[uid] === true;
+      snap.val().hasUserThanked[currentUserUID] === true;
     const thankCount = snap.val().thankCount;
     console.log("thankCount:", thankCount);
     if (hasUserThanked) {
-      reportRef.child(`/hasUserThanked/${uid}`).remove();
-      userReportRef.child(`/hasUserThanked/${uid}`).remove();
+      reportRef.child(`/hasUserThanked/${currentUserUID}`).remove();
+      userReportRef.child(`/hasUserThanked/${currentUserUID}`).remove();
       reportRef.child("/thankCount").set(thankCount - 1);
       userReportRef.child("/thankCount").set(thankCount - 1);
     } else {
-      reportRef.child(`/hasUserThanked/${uid}`).set(true);
-      userReportRef.child(`/hasUserThanked/${uid}`).set(true);
+      reportRef.child(`/hasUserThanked/${currentUserUID}`).set(true);
+      userReportRef.child(`/hasUserThanked/${currentUserUID}`).set(true);
       reportRef.child("/thankCount").set(thankCount + 1);
       userReportRef.child("/thankCount").set(thankCount + 1);
     }
