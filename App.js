@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { SwitchNavigator } from "react-navigation";
-import MainNavigation from "./routes/MainNavigation";
-import LoginScreen from "./components/LoginScreen";
-import LoadingScreen from "./components/LoadingScreen";
+import MainNavigation from "./src/routes/MainNavigation";
+import LoginScreen from "./src/components/LoginScreen";
+import LoadingScreen from "./src/components/LoadingScreen";
 
 const RootStack = SwitchNavigator(
   {
