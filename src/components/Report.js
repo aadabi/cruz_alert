@@ -37,15 +37,17 @@ class Report extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.contentContainer}>
+        <TouchableOpacity>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.description}>{description}</Text>
           <Text style={styles.category}>{category}</Text>
+        </TouchableOpacity>
         </View>
         <View style={styles.secondaryContainer}>
           <TouchableOpacity onPress={this.handleThank}>
-            <Text>{this.state.thanked ? "Unthank" : "Thank"}</Text>
+            <Text style={styles.bold }>{this.state.thanked ? "Unthank" : "Thank"}</Text>
           </TouchableOpacity>
-          <Text>{thankCountText}</Text>
+          <Text style={[thankCount > 0 ? styles.counter : styles.noThank]}>{thankCountText}</Text>
         </View>
       </View>
     );
@@ -97,6 +99,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     fontWeight: "bold"
+  },
+  counter: {
+    fontWeight: "bold",
+    color: "#00afd1",
+  },
+  bold: {
+    fontWeight: "bold",
   }
 });
 
