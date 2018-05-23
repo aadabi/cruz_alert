@@ -45,7 +45,7 @@ class Report extends Component {
         </View>
         <View style={styles.secondaryContainer}>
           <TouchableOpacity onPress={this.handleThank}>
-            <Text style={styles.bold }>{this.state.thanked ? "Unthank" : "Thank"}</Text>
+            <Text style={styles.bold }>{this.state.thanked ? "Unthank  " : "Thank "}</Text>
           </TouchableOpacity>
           <Text style={[thankCount > 0 ? styles.counter : styles.noThank]}>{thankCountText}</Text>
         </View>

@@ -94,7 +94,7 @@ class SubmitReportScreen extends Component {
           <Picker.Item color="#494949" label="WEAPON" value="Weapon" />
           <Picker.Item color="#494949" label="DRUGS" value="Drugs" />
         </Picker>
-        <Picker 
+        <Picker
           selectedValue={this.state.isPublic}
           onValueChange={value => this.setState({ isPublic: value })}
           style={styles.picker}
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     fontSize: 16,
     backgroundColor: "#F2F2F2",
-    borderColor: "#00afd1",
+    borderColor: "#007E8C",
     borderWidth: 2,
     height: "45%",
     padding: 5,
@@ -136,10 +136,10 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 23,
     alignItems: "center",
-    borderColor: "#00afd1",
+    borderColor: "#FFFF52",
     borderWidth: 1,
     padding: 20,
-    backgroundColor: "#8C8C8C"
+    backgroundColor: "#666666"
   },
   buttonBack: {
     flex: 1,
