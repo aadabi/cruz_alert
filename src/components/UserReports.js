@@ -18,7 +18,7 @@ class UserReports extends Component {
     drawerLabel: "Own Reports",
     drawerIcon: () => (
       <Image
-        source={require("../components/images/analytics.png")}
+        source={require("../components/images/user-icon.png")}
         style={{ width: 40, height: 40, resizeMode: "stretch" }}
       />
     )
