@@ -15,7 +15,7 @@ import { getUserReports } from "../api";
 
 class UserReports extends Component {
   static navigationOptions = {
-    drawerLabel: "Own Reports",
+    drawerLabel: "My Reports",
     drawerIcon: () => (
       <Image
         source={require("../components/images/user-icon.png")}
