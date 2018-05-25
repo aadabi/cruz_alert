@@ -63,7 +63,7 @@ const PublicReportsFeedStackNavigator = StackNavigator({
       <Image
         resizeMode="cover"
         style={{
-          width: 290,
+          width: 300,
           height: 50,
           resizeMode: 'contain',
           alignSelf: 'center',

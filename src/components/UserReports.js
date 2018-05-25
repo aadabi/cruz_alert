@@ -64,7 +64,19 @@ const UserReportsStackNavigator = StackNavigator({
   UserReports: {
     screen: UserReports,
     navigationOptions: ({ navigation }) => ({
-      backgroundColor: "#FFFF52",
+      headerTitle: (
+      <Image
+        resizeMode="cover"
+        style={{
+          width: 300,
+          height: 50,
+          resizeMode: 'contain',
+          alignSelf: 'center',
+        }}
+        source={require('../components/images/Logoldpi.png')}
+        />
+      ),
+      backgroundColor: "transparent",
       headerLeft: (
         <TouchableOpacity
           onPress={() => navigation.navigate("DrawerOpen")}
