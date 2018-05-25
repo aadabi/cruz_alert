@@ -69,6 +69,8 @@ class SubmitReportScreen extends Component {
     return (
       <KeyboardAvoidingView style={styles.container}>
         <TextInput
+          underlineColorAndroid="#1295D8"
+          selectionColor="#FFB511"
           placeholder="Please enter a title for your report"
           autoFocus={true}
           onChangeText={title => this.setState({ title })}
@@ -76,6 +78,8 @@ class SubmitReportScreen extends Component {
 
         <TextInput
           multiline
+          underlineColorAndroid="#1295D8"
+          selectionColor="#FFB511"
           style={styles.descriptionInput}
           placeholder="Please describe your incident's detail right here..."
           onChangeText={description => this.setState({ description })}
@@ -125,8 +129,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     fontSize: 16,
     backgroundColor: "#F2F2F2",
-    borderColor: "#007E8C",
-    borderWidth: 2,
+    borderColor: "#1295D8",
+    borderWidth: 1,
     height: "45%",
     padding: 5,
     paddingTop: 5,

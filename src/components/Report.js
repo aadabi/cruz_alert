@@ -102,10 +102,11 @@ const styles = StyleSheet.create({
   },
   counter: {
     fontWeight: "bold",
-    color: "#00afd1",
+    color: "#FFB511",
   },
   bold: {
     fontWeight: "bold",
+    color: "#1295D8"
   }
 });
 
