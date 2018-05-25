@@ -4,6 +4,7 @@ import {
   Button,
   Alert,
   Image,
+  ImageBackground,
   Text,
   TouchableOpacity,
   StyleSheet
@@ -56,7 +57,9 @@ export default class LoginScreen extends Component {
 
   render() {
     return (
-      <View style = {styles.ScreenCont}>
+      <ImageBackground
+        source={require('../components/images/background.png')}
+        style={styles.ScreenCont}>
         <Image resizeMode="contain" style={styles.logo} source= {require('../components/images/Logoldpi.png')} />
         <View style={styles.ButtonContainer}>
           <View style ={styles.loginContainer} >
@@ -69,7 +72,7 @@ export default class LoginScreen extends Component {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </ImageBackground>
     );
   }
 }
@@ -80,7 +83,9 @@ const styles = StyleSheet.create({
        alignItems:'center',
        justifyContent:'center',
        flex: 1,
-       backgroundColor:'#1295D8'
+       backgroundColor:'transparent',
+       width: undefined,
+       height: undefined
 
    },
    loginContainer:{
@@ -92,7 +97,7 @@ const styles = StyleSheet.create({
    logo:{
        position: 'absolute',
        borderWidth:.8,
-       borderColor:'#1295D8',
+       borderColor:'transparent',
        width:300,
        height:300,
        padding:5
@@ -104,7 +109,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 10
   },
- 
+
   GoogleDesign: {
    //specifies direction of flexible alignItems
    //so that text image are in a row
@@ -119,25 +124,25 @@ const styles = StyleSheet.create({
    //this makes button corners rounded
    borderRadius: 15 ,
    margin: 50,
- 
- 
- 
+
+
+
  },
- 
+
  TextLayout:{
    marginBottom : 4,
    marginRight :20,
    color: "#005581"
- 
- 
+
+
  },
- 
+
  ButtonDivider :{
    width: 2,
    height: 50,
    backgroundColor : '#005581'
- 
- 
+
+
  },
  IconLayout: {
     padding: 10,
@@ -145,7 +150,6 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
     resizeMode : 'stretch',
- 
+
  }
  });
- 
