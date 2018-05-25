@@ -58,7 +58,7 @@ export default class LoginScreen extends Component {
   render() {
     return (
       <ImageBackground
-        source={require('../components/images/background.png')}
+        source={require('../components/images/background-effect.png')}
         style={styles.ScreenCont}>
         <Image resizeMode="contain" style={styles.logo} source= {require('../components/images/Logoldpi.png')} />
         <View style={styles.ButtonContainer}>
@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
        position: 'absolute',
        borderWidth:.8,
        borderColor:'transparent',
-       width:300,
-       height:300,
+       width:365,
+       height:365,
        padding:5
    },
 
@@ -118,8 +118,6 @@ const styles = StyleSheet.create({
    backgroundColor: '#FFFF52',
    //color of the divider between image and text
    //also the border of the button
-   borderColor: '#D1D1D1',
-   borderWidth: 1,
    height: 50,
    //this makes button corners rounded
    borderRadius: 15 ,

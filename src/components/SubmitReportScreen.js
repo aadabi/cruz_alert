@@ -140,10 +140,10 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 23,
     alignItems: "center",
-    borderColor: "#FFFF52",
+    borderColor: "#000000",
     borderWidth: 1,
     padding: 20,
-    backgroundColor: "#666666"
+    backgroundColor: "#333333"
   },
   buttonBack: {
     flex: 1,
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   },
   picker: {
     height: 50,
-    width: 150
+    width: 150,
   },
   pickers: {
     flex: 1,
