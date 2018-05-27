@@ -25,9 +25,17 @@ export default class DrawerContent extends Component {
   }
 
   render() {
+    const firstname = firebase.auth().currentUser.displayName.split(' ')[0];
+    const lastname = firebase.auth().currentUser.displayName.split(' ')[1];
     return (
       <View style={{ flex: 1 }}>
         <SafeAreaView forceInset={{ top: "always", horizontal: "never" }}>
+          <View style={styles.header}>
+            <View style={styles.userName}>
+              <Text style={styles.userName}>  {firstname} </Text>
+              <Text style={styles.userName}>  {lastname} </Text>
+            </View>
+          </View>
           <View style={styles.container}>
             <DrawerItems {...this.props} />
             <TouchableOpacity onPress={this.logout}>
@@ -41,6 +49,22 @@ export default class DrawerContent extends Component {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    height: 150,
+    display: "flex",
+    backgroundColor:'#D1D1D1',
+    
+  },
+  userName: {
+    fontFamily: 'sans-serif-condensed',
+    fontWeight: 'bold',
+    fontSize: 44,
+    color: 'black',
+  },
+  nameContainer: {
+    flexDirection: "column",
+    justifyContent: "center",
+  },
   container: {
     height: "100%",
     display: "flex",
