@@ -14,7 +14,23 @@ export const getUserReports = uid => {
     resolve(await getReports(userReportsRef));
   });
 };
+//method to store a url reference of the image to database
+export const urlReference = (url, sessionId, filename) => {
 
+   let reftoStorage = storage.ref('reportimg').child(filename)
+   let currentUser = firebase.auth().currentUser
+   let imageInfo ={
+       type: 'image',
+       url: url,
+       createdAt: sessionId,
+       user: {
+         id: currentUser.uid,
+         email: currentUser.email
+       }
+
+   }
+    firebase.database().ref('/images/').push(imageInfo);
+}
 const getReports = ref => {
   return new Promise((resolve, reject) => {
     const { uid } = firebase.auth().currentUser;
