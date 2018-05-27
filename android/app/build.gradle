@@ -94,8 +94,8 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 26
+    buildToolsVersion '26.1.0'
 
     defaultConfig {
         applicationId "com.cruzalert"
@@ -144,6 +144,15 @@ dependencies {
     api(project(':react-native-firebase')) {
         transitive = false
     }
+    api (project(':react-native-camera')) {
+        exclude group: "com.google.android.gms"
+        implementation 'com.android.support:exifinterface:26.1.0'
+        implementation ('com.google.android.gms:play-services-vision:12.0.0') {
+            force = true
+        }
+    }
+    api (project(':react-native-fetch-blob'))
+    api (project(':react-native-image-picker'))
 
     // RNFirebase requirements
     implementation "com.google.android.gms:play-services-base:12.0.0"
@@ -153,9 +162,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:12.0.0'
     implementation "com.google.firebase:firebase-auth:12.0.0"
     implementation 'com.google.firebase:firebase-database:12.0.0'
-
+    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.android.support:appcompat-v7:23.0.1"
+    implementation "com.android.support:appcompat-v7:26.1.0"
     implementation "com.facebook.react:react-native:+"  // From node_modules
 }
 

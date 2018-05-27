@@ -8,7 +8,9 @@ import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.database.RNFirebaseDatabasePackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
-
+import org.reactnative.camera.RNCameraPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import com.imagepicker.ImagePickerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -32,7 +34,10 @@ public class MainApplication extends Application implements ReactApplication {
                 new RNGoogleSigninPackage(),
                 new RNFirebaseDatabasePackage(),
                 new RNFirebasePackage(),
-                new RNFirebaseAuthPackage()
+                new RNFirebaseAuthPackage(),
+                new RNCameraPackage(),
+                new RNFetchBlobPackage(),
+                new ImagePickerPackage()
       );
     }
 

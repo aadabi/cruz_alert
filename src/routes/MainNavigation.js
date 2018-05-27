@@ -6,6 +6,8 @@ import SubmitReportScreen from "../components/SubmitReportScreen";
 import DrawerContent from "../components/DrawerContent";
 import PublicReportsFeed from "../components/PublicReportsFeed";
 import UserReports from "../components/UserReports";
+import UploadScreen from "../components/UploadScreen";
+import CameraScreen from "../components/CameraScreen";
 
 const MainDrawerNavigation = DrawerNavigator(
   {
@@ -19,9 +21,12 @@ const MainDrawerNavigation = DrawerNavigator(
 
 const MainNavigation = StackNavigator(
   {
-    Main: { screen: MainDrawerNavigation },
-    SubmitReportModal: { screen: SubmitReportScreen }
-  },
+   Main: { screen: MainDrawerNavigation },
+   SubmitReportModal: { screen: SubmitReportScreen },
+   CameraScreenModal: { screen: CameraScreen },
+   UploadScreenModal: { screen: UploadScreen }
+
+ },
   {
     mode: "modal",
     headerMode: "none",

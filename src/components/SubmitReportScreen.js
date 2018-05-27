@@ -9,7 +9,8 @@ import {
   Keyboard,
   Switch,
   KeyboardAvoidingView,
-  Picker
+  Picker,
+  Image
 } from "react-native";
 import { StackNavigator } from "react-navigation";
 import { submitReport } from "../api";
@@ -68,6 +69,8 @@ class SubmitReportScreen extends Component {
     // pop up box for it
     return (
       <KeyboardAvoidingView style={styles.container}>
+
+
         <TextInput
           underlineColorAndroid="#1295D8"
           selectionColor="#FFB511"
@@ -113,6 +116,16 @@ class SubmitReportScreen extends Component {
           <Text style={styles.buttonText}>SUBMIT REPORT</Text>
         </TouchableOpacity>
         </View>
+        <View style ={styles.buttonContainer}>
+          <TouchableOpacity style={styles.cameraIcon} activeOpacity={0.5} onPress={() => this.props.navigation.navigate("CameraScreenModal")}>
+
+              <Image resizeMode="contain"
+                source={require('../components/images/cameraIcontwo.png')}
+                style={styles.cameraContainer}
+              />
+              <Text style = {styles.textinput}>Take a Photo Instead</Text>
+          </TouchableOpacity>
+      </View>
       </KeyboardAvoidingView>
     );
   }
@@ -161,7 +174,42 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center"
-  }
+  },
+  cameraContainer:{
+    resizeMode: 'contain',
+    justifyContent: 'center',
+    height: 30,
+    width: 30,
+    padding: 10,
+    marginBottom: 5,
+    borderWidth: 1,
+    borderColor: 'lightgray'
+  },
+  cameraIcon:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#DCDCDC',
+    //color of the divider between image and text
+    //also the border of the button
+    height: 50,
+    //this makes button corners rounded
+    borderRadius: 15 ,
+    margin: 50,
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10
+  },
+  textinput:{
+    marginBottom : 4,
+    marginRight :20,
+    color: 'gray'
+
+
+  },
+
 });
 
 const SubmitReportScreenStackNavigator = StackNavigator({
