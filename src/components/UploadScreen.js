@@ -34,7 +34,7 @@ window.Blob = Blob
 //upload image factory function returns a url object of the image and a blob
 //mime type indicates the nature and format of the object/document/file
 //promise checks when upload actually happens returns error if unable to resolve the url
-const UploadImage = (uri, filename,mime = 'application/octet-stream') => {
+const UploadImage = (uri, filename,mime = 'image/jpg') => {
 //promise object to check eventual complemtion of an asynchronous operation like uploading an image
    return new Promise((resolve, reject) => {
      const imguploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
@@ -55,7 +55,6 @@ const UploadImage = (uri, filename,mime = 'application/octet-stream') => {
          return reftoStorage.put(blob, { contentType: mime })
        })
        //returns the URL of the image
-       //to store a reference to it in the database
        .then(() => {
          uploadBlob.close()
          return reftoStorage.getDownloadURL()
@@ -63,7 +62,7 @@ const UploadImage = (uri, filename,mime = 'application/octet-stream') => {
        //promise gets resolve with the url of the image
        .then((url) => {
          resolve(url)
-         //then we  can callthis method to upload image
+         //then we  can call this method to upload image to database
         urlReference(url, sessionId, filename)
        })
        .catch((error) => {
@@ -120,31 +119,7 @@ class UploadScreen extends Component {
 
 
         </KeyboardAvoidingView>
-        {
-          (() => {
-            switch (this.state.uploadURL) {
-              case null:
-                return null
-              case '':
-              //this shows the loading icon
-                return <ActivityIndicator />
-              default:
-                return (
 
-
-
-
-
-                  <View>
-                    <Image
-                      source={{ uri: this.state.uploadURL }}
-                      style={ UploadLayout.image }
-                    />
-                  </View>
-                )
-            }
-          })()
-        }
         <TouchableOpacity style = {UploadLayout.uploadIcon} onPress={ () => this.pickImage() }>
           <Image
             source={require('../components/images/uploadIcon.png')}
