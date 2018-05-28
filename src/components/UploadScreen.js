@@ -127,6 +127,14 @@ class UploadScreen extends Component {
           />
           <Text style = {UploadLayout.textinput}> Upload your Image</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity style = {UploadLayout.uploadIcon} onPress={ () => this.props.navigation.navigate("PublicReportsFeed")}>
+          <Image
+            source={require('../components/images/homeIcon.png')}
+            style={UploadLayout.upload}
+          />
+          <Text style = {UploadLayout.textinput}> Go To Public Feed</Text>
+        </TouchableOpacity>
       </View>
     )
   }
