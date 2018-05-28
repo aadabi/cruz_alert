@@ -5,7 +5,7 @@ import {
   View,
   StyleSheet,
   Image,
-  TouchableHighlight,
+  TouchableOpacity,
   Button
 } from "react-native";
 import firebase from "react-native-firebase";
@@ -24,8 +24,8 @@ class PublicReportsFeed extends React.Component {
     drawerLabel: "Home reports",
     drawerIcon: () => (
       <Image
-        source={require("../components/images/home.png")}
-        style={{ width: 40, height: 40, resizeMode: "stretch" }}
+        source={require("../components/images/house-searcher.png")}
+        style={{ width: 45, height: 45, resizeMode: "stretch" }}
       />
     )
   };
@@ -59,27 +59,36 @@ const PublicReportsFeedStackNavigator = StackNavigator({
   PublicReportsFeed: {
     screen: PublicReportsFeed,
     navigationOptions: ({ navigation }) => ({
-      backgroundColor: "#FFFF52",
+      headerTitle: (
+      <Image
+        resizeMode="cover"
+        style={{
+          width: 300,
+          height: 50,
+          resizeMode: 'contain',
+          alignSelf: 'center',
+        }}
+        source={require('../components/images/Logoldpi.png')}
+        />
+      ),
+      backgroundColor: "transparent",
       headerLeft: (
-        <Text
-          onPress={() => {
-            console.log("pressed drawer open");
-            navigation.navigate("DrawerOpen");
-          }}
+        <TouchableOpacity
+          onPress={() => navigation.navigate("DrawerOpen")}
           style={{ paddingLeft: 20 }}
         >
-          Menu
-        </Text>
+          <Text>Menu</Text>
+        </TouchableOpacity>
       ),
       headerRight: (
-        <TouchableHighlight
+        <TouchableOpacity
           onPress={() => {
             navigation.navigate("SubmitReportModal");
           }}
           style={{ paddingRight: 20 }}
         >
-          <Text>Submit Report</Text>
-        </TouchableHighlight>
+          <Text>New Report</Text>
+        </TouchableOpacity>
       )
     })
   },

@@ -6,7 +6,7 @@ import {
   View,
   Image,
   StyleSheet,
-  TouchableHighlight,
+  TouchableOpacity,
   ListView
 } from "react-native";
 import firebase from "react-native-firebase";
@@ -15,10 +15,10 @@ import { getUserReports } from "../api";
 
 class UserReports extends Component {
   static navigationOptions = {
-    drawerLabel: "Own Reports",
+    drawerLabel: "My Reports",
     drawerIcon: () => (
       <Image
-        source={require("../components/images/analytics.png")}
+        source={require("../components/images/user-icon.png")}
         style={{ width: 40, height: 40, resizeMode: "stretch" }}
       />
     )
@@ -64,22 +64,36 @@ const UserReportsStackNavigator = StackNavigator({
   UserReports: {
     screen: UserReports,
     navigationOptions: ({ navigation }) => ({
-      backgroundColor: "#FFFF52",
+      headerTitle: (
+      <Image
+        resizeMode="cover"
+        style={{
+          width: 300,
+          height: 50,
+          resizeMode: 'contain',
+          alignSelf: 'center',
+        }}
+        source={require('../components/images/Logoldpi.png')}
+        />
+      ),
+      backgroundColor: "transparent",
       headerLeft: (
-        <Text
+        <TouchableOpacity
           onPress={() => navigation.navigate("DrawerOpen")}
           style={{ paddingLeft: 20 }}
         >
-          Menu
-        </Text>
+          <Text>Menu</Text>
+        </TouchableOpacity>
       ),
       headerRight: (
-        <Text
-          onPress={() => navigation.navigate("SubmitReportModal")}
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("SubmitReportModal");
+          }}
           style={{ paddingRight: 20 }}
         >
-          New Report
-        </Text>
+          <Text>New Report</Text>
+        </TouchableOpacity>
       )
     })
   },

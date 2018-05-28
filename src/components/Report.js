@@ -26,7 +26,8 @@ class Report extends Component {
   };
 
   render() {
-    const { title, description, category } = this.props.report;
+    const { title, description, category, timestamp } = this.props.report;
+    const reportTime = timestamp.split('T')[0]+" at "+ timestamp.split('T')[1].split('\.')[0];
     const thankCount = this.state.thankCount;
     let thankCountText;
     if (thankCount === 1) {
@@ -39,13 +40,14 @@ class Report extends Component {
         <View style={styles.contentContainer}>
         <TouchableOpacity>
           <Text style={styles.title}>{title}</Text>
+          <Text style={styles.time}>{reportTime}</Text>
           <Text style={styles.description}>{description}</Text>
           <Text style={styles.category}>{category}</Text>
         </TouchableOpacity>
         </View>
         <View style={styles.secondaryContainer}>
           <TouchableOpacity onPress={this.handleThank}>
-            <Text style={styles.bold }>{this.state.thanked ? "Unthank" : "Thank"}</Text>
+            <Text style={styles.bold }>{this.state.thanked ? "Unthank  " : "Thank "}</Text>
           </TouchableOpacity>
           <Text style={[thankCount > 0 ? styles.counter : styles.noThank]}>{thankCountText}</Text>
         </View>
@@ -102,10 +104,11 @@ const styles = StyleSheet.create({
   },
   counter: {
     fontWeight: "bold",
-    color: "#00afd1",
+    color: "#FFB511",
   },
   bold: {
     fontWeight: "bold",
+    color: "#1295D8"
   }
 });
 

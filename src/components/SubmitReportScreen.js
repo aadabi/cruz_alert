@@ -46,7 +46,8 @@ class SubmitReportScreen extends Component {
 
   handleSubmit = () => {
     const { title, description } = this.state;
-    if (title === null || description === null) {
+    if (title === null || description === null || title === "" || description === "") {
+      Alert.alert("Please enter a title and description.")
       // TODO: provide user feedback
       return;
     }
@@ -67,6 +68,25 @@ class SubmitReportScreen extends Component {
     // pop up box for it
     return (
       <KeyboardAvoidingView style={styles.container}>
+        <TextInput
+          underlineColorAndroid="#1295D8"
+          selectionColor="#FFB511"
+          placeholder="Please enter a title for your report"
+          autoFocus={true}
+          onChangeText={title => this.setState({ title })}
+        />
+
+        <TextInput
+          multiline
+          underlineColorAndroid="#1295D8"
+          selectionColor="#FFB511"
+          style={styles.descriptionInput}
+          placeholder="Please describe your incident's detail right here..."
+          onChangeText={description => this.setState({ description })}
+        />
+
+        <View
+          style={styles.pickers}>
         <Picker
           selectedValue={this.state.category}
           onValueChange={this.updateCategory}
@@ -78,26 +98,21 @@ class SubmitReportScreen extends Component {
           <Picker.Item color="#494949" label="WEAPON" value="Weapon" />
           <Picker.Item color="#494949" label="DRUGS" value="Drugs" />
         </Picker>
-
-        <TextInput
-          placeholder="Please enter a title for your report"
-          onChangeText={title => this.setState({ title })}
-        />
-
-        <TextInput
-          multiline
-          style={styles.descriptionInput}
-          placeholder="Please describe your incident's detail right here..."
-          onChangeText={description => this.setState({ description })}
-        />
-        <Text>Make report public</Text>
-        <Switch
-          value={this.state.isPublic}
+        <Picker
+          selectedValue={this.state.isPublic}
           onValueChange={value => this.setState({ isPublic: value })}
-        />
+          style={styles.picker}
+        >
+          <Picker.Item color="#494949" label="Private" value={false} />
+          <Picker.Item color="#494949" label="Public" value={true} />
+        </Picker>
+        </View>
+
+        <View style={styles.buttonBack}>
         <TouchableOpacity style={styles.button} onPress={this.handleSubmit}>
           <Text style={styles.buttonText}>SUBMIT REPORT</Text>
         </TouchableOpacity>
+        </View>
       </KeyboardAvoidingView>
     );
   }
@@ -114,9 +129,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     fontSize: 16,
     backgroundColor: "#F2F2F2",
-    borderColor: "#FFFF52",
-    borderWidth: 2,
-    height: "60%",
+    borderColor: "#1295D8",
+    borderWidth: 1,
+    height: "45%",
     padding: 5,
     paddingTop: 5,
     marginBottom: 20,
@@ -125,10 +140,13 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 23,
     alignItems: "center",
-    borderColor: "#FFFF52",
+    borderColor: "#000000",
     borderWidth: 1,
     padding: 20,
-    backgroundColor: "#8C8C8C"
+    backgroundColor: "#333333"
+  },
+  buttonBack: {
+    flex: 1,
   },
   buttonText: {
     color: "#FFFFFF",
@@ -136,7 +154,13 @@ const styles = StyleSheet.create({
   },
   picker: {
     height: 50,
-    width: 150
+    width: 150,
+  },
+  pickers: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
   }
 });
 
