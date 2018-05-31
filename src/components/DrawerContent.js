@@ -50,15 +50,15 @@ export default class DrawerContent extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    height: 150,
+    height: 130,
     display: "flex",
     backgroundColor:'#D1D1D1',
-    
+
   },
   userName: {
     fontFamily: 'sans-serif-condensed',
     fontWeight: 'bold',
-    fontSize: 44,
+    fontSize: 40,
     color: 'black',
   },
   nameContainer: {
@@ -66,9 +66,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   container: {
-    height: "100%",
+    height: "83%",
     display: "flex",
-    backgroundColor:'#D1D1D1',
+    backgroundColor:'#e8e8e8',
     justifyContent: "space-between"
   },
   logout: {

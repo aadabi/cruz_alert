@@ -64,11 +64,11 @@ const PublicReportsFeedStackNavigator = StackNavigator({
         resizeMode="cover"
         style={{
           width: 300,
-          height: 50,
+          height: 45,
           resizeMode: 'contain',
           alignSelf: 'center',
         }}
-        source={require('../components/images/Logoldpi.png')}
+        source={require('../components/images/Cruz_Alert_Slogan.png')}
         />
       ),
       backgroundColor: "transparent",
@@ -77,7 +77,7 @@ const PublicReportsFeedStackNavigator = StackNavigator({
           onPress={() => navigation.navigate("DrawerOpen")}
           style={{ paddingLeft: 20 }}
         >
-          <Text>Menu</Text>
+          <Text> Menu</Text>
         </TouchableOpacity>
       ),
       headerRight: (
@@ -87,7 +87,7 @@ const PublicReportsFeedStackNavigator = StackNavigator({
           }}
           style={{ paddingRight: 20 }}
         >
-          <Text>New Report</Text>
+          <Text>Report</Text>
         </TouchableOpacity>
       )
     })
