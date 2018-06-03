@@ -43,7 +43,8 @@ const getReports = ref => {
           description,
           thankCount,
           usersThanked,
-          isPublic
+          isPublic,
+          timestamp,
         } = child.val();
         const hasUserThanked =
           child.val().hasUserThanked !== undefined &&
@@ -56,7 +57,8 @@ const getReports = ref => {
           description,
           thankCount,
           hasUserThanked,
-          isPublic
+          isPublic,
+          timestamp,
         };
         console.log(report);
         reports.push(report);
