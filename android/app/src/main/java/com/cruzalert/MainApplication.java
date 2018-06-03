@@ -10,6 +10,8 @@ import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import org.reactnative.camera.RNCameraPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
+import io.invertase.firebase.storage.RNFirebaseStoragePackage;
+
 import com.imagepicker.ImagePickerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -37,8 +39,9 @@ public class MainApplication extends Application implements ReactApplication {
                 new RNFirebaseAuthPackage(),
                 new RNCameraPackage(),
                 new RNFetchBlobPackage(),
-                new ImagePickerPackage()
-      );
+                new ImagePickerPackage(),
+                new RNFirebaseStoragePackage()
+        );
     }
 
     @Override

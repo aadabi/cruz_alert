@@ -111,9 +111,13 @@ class SubmitReportScreen extends Component {
         </Picker>
         </View>
 
-        <View style={styles.buttonBack}>
-        <TouchableOpacity style={styles.button} onPress={this.handleSubmit}>
-          <Text style={styles.buttonText}>SUBMIT REPORT</Text>
+        <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.cameraIcon} onPress={this.handleSubmit}>
+          <Image resizeMode="contain"
+            source={require('../components/images/submitIcon.png')}
+            style={styles.cameraContainer}
+          />
+          <Text style={styles.textinput}>SUBMIT REPORT</Text>
         </TouchableOpacity>
         </View>
         <View style ={styles.buttonContainer}>
@@ -189,10 +193,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#DCDCDC',
-    //color of the divider between image and text
-    //also the border of the button
+
     height: 50,
-    //this makes button corners rounded
+
     borderRadius: 15 ,
     margin: 50,
   },
@@ -200,7 +203,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 10
+    margin: 25
   },
   textinput:{
     marginBottom : 4,
@@ -208,7 +211,7 @@ const styles = StyleSheet.create({
     color: 'gray'
 
 
-  },
+  }
 
 });
 

@@ -153,6 +153,7 @@ dependencies {
     }
     api (project(':react-native-fetch-blob'))
     api (project(':react-native-image-picker'))
+    api "com.google.firebase:firebase-storage:12.0.0"
 
     // RNFirebase requirements
     implementation "com.google.android.gms:play-services-base:12.0.0"

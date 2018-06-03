@@ -29,7 +29,7 @@ export const urlReference = (url, sessionId, filename) => {
        }
 
    }
-    firebase.database().ref('/images/').push(imageInfo);
+    firebase.database().ref('/images/').set(imageInfo);
 }
 const getReports = ref => {
   return new Promise((resolve, reject) => {

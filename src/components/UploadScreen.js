@@ -12,18 +12,25 @@ import {
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import RNFetchBlob from 'react-native-fetch-blob';
-import firebase from 'firebase';
-import {StackNavigator} from "react-navigation";
+import {API_KEY, DATABASE_URL, AUTH_DOMAIN, STORAGE_BUCKET} from "../configure_key";
 
+
+
+import {StackNavigator} from "react-navigation";
+import firebase from 'firebase';
 //configuring our reference to our database storage
+
 const config = {
-  apiKey: "AIzaSyA56NpR0fum7P1fFwfNLE8dC273NAMp3tc",
-  datbaseURL: "https://cruzalert.firebaseio.com",
-  authDomain: "cruzalert.firebaseapp.com",
-  storageBucket: "gs://cruzalert.appspot.com",
+  apiKey : API_KEY,
+  databaseUrl : DATABASE_URL,
+  authDomain : AUTH_DOMAIN,
+  storageBucket : STORAGE_BUCKET
+
 }
 firebase.initializeApp(config)
 const storage = firebase.storage()
+
+
 //phtos are uploaded as blob to firebase
 // prepare Blob support
 window.Blob = RNFetchBlob.polyfill.Blob
@@ -84,6 +91,7 @@ class UploadScreen extends Component {
 
 
 
+
 //method to pick an image
   pickImage() {
     this.setState({ uploadURL: '' })
@@ -117,25 +125,30 @@ class UploadScreen extends Component {
 
           />
 
+          <TouchableOpacity style = {UploadLayout.uploadIcon} onPress={ () => this.pickImage() }>
+            <Image
+              source={require('../components/images/uploadIcon.png')}
+              style={UploadLayout.upload}
+            />
+            <Text style = {UploadLayout.textinput}> Upload your Image</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style = {UploadLayout.uploadIcon} onPress={ () => this.props.navigation.navigate("PublicReportsFeed")}>
+            <Image
+              source={require('../components/images/homeIcon.png')}
+              style={UploadLayout.upload}
+            />
+            <Text style = {UploadLayout.textinput}> Go To Public Feed</Text>
+          </TouchableOpacity>
 
         </KeyboardAvoidingView>
 
-        <TouchableOpacity style = {UploadLayout.uploadIcon} onPress={ () => this.pickImage() }>
-          <Image
-            source={require('../components/images/uploadIcon.png')}
-            style={UploadLayout.upload}
-          />
-          <Text style = {UploadLayout.textinput}> Upload your Image</Text>
-        </TouchableOpacity>
 
-        <TouchableOpacity style = {UploadLayout.uploadIcon} onPress={ () => this.props.navigation.navigate("PublicReportsFeed")}>
-          <Image
-            source={require('../components/images/homeIcon.png')}
-            style={UploadLayout.upload}
-          />
-          <Text style = {UploadLayout.textinput}> Go To Public Feed</Text>
-        </TouchableOpacity>
+
+
+
       </View>
+
     )
   }
 }
@@ -180,7 +193,7 @@ const UploadLayout = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
     paddingTop: 50,
-    height: 300,
+    height: 180,
     width: 300
   },
   buttonContainer: {
