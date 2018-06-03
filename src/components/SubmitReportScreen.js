@@ -114,7 +114,7 @@ class SubmitReportScreen extends Component {
         <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.cameraIcon} onPress={this.handleSubmit}>
           <Image resizeMode="contain"
-            source={require('../components/images/submitIcon.png')}
+            source={require('../components/images/subIcon.png')}
             style={styles.cameraContainer}
           />
           <Text style={styles.textinput}>SUBMIT REPORT</Text>

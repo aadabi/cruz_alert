@@ -48,7 +48,7 @@ class CameraScreen extends Component {
                aspect = {Camera.constants.Aspect.fill}>
             </Camera>
             <TouchableOpacity style={CameraStyle.capture} activeOpacity={0.5} onPress={this.handleUpload}>
-              <Image source={require('../components/images/cameraIcon.png')}
+              <Image source={require('../components/images/Camera-Next-icon.png')}
                 style ={CameraStyle.cameracontainer}/>
 
             </TouchableOpacity>
