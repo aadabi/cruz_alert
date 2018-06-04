@@ -12,7 +12,8 @@ import CameraScreen from "../components/CameraScreen";
 const MainDrawerNavigation = DrawerNavigator(
   {
     Home: { screen: PublicReportsFeed },
-    UserReports: { screen: UserReports }
+    UserReports: { screen: UserReports },
+     CameraScreenModal: { screen: CameraScreen },
   },
   {
     contentComponent: DrawerContent
@@ -23,7 +24,6 @@ const MainNavigation = StackNavigator(
   {
    Main: { screen: MainDrawerNavigation },
    SubmitReportModal: { screen: SubmitReportScreen },
-   CameraScreenModal: { screen: CameraScreen },
    UploadScreenModal: { screen: UploadScreen }
 
  },

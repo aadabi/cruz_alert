@@ -14,6 +14,15 @@ import { StackNavigator } from "react-navigation";
 
 
 class CameraScreen extends Component {
+static navigationOptions = {
+  drawerLabel: "Take A Photo",
+  drawerIcon: () => (
+    <Image
+      source={require("../components/images/camera-icon.png")}
+      style={{ width: 25, height: 25, resizeMode: "contain" }}
+    />
+  )
+};
    constructor(props){
     super(props);
     this.handleUpload = this.handleUpload.bind(this);

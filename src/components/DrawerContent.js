@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   container: {
-    height: "83%",
+    height: "78%",
     display: "flex",
     backgroundColor:'#e8e8e8',
     justifyContent: "space-between"

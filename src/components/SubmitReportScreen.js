@@ -112,25 +112,15 @@ class SubmitReportScreen extends Component {
         </View>
 
         <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.cameraIcon} onPress={this.handleSubmit}>
-          <Image resizeMode="contain"
-            source={require('../components/images/subIcon.png')}
-            style={styles.cameraContainer}
-          />
+          <TouchableOpacity style={styles.cameraIcon} onPress={this.handleSubmit}>
+            <Image resizeMode="contain"
+              source={require('../components/images/subIcon.png')}
+              style={styles.cameraContainer}
+            />
           <Text style={styles.textinput}>SUBMIT REPORT</Text>
         </TouchableOpacity>
-        </View>
-        <View style ={styles.buttonContainer}>
-          <TouchableOpacity style={styles.cameraIcon} activeOpacity={0.5} onPress={() => this.props.navigation.navigate("CameraScreenModal")}>
-
-              <Image resizeMode="contain"
-                source={require('../components/images/cameraIcontwo.png')}
-                style={styles.cameraContainer}
-              />
-              <Text style = {styles.textinput}>Take a Photo Instead</Text>
-          </TouchableOpacity>
       </View>
-      </KeyboardAvoidingView>
+    </KeyboardAvoidingView>
     );
   }
 }
